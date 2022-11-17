@@ -1,7 +1,7 @@
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:flutter/material.dart';
 
-import "register.dart";
+import 'loginscreens/register.dart';
 
 class HomeScreen extends StatelessWidget {
   var user = FirebaseAuth.instance.currentUser;
@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        Text(user!.email.toString()),
+        Text(user!.displayName.toString()),
         ElevatedButton(
             onPressed: () async {
               await FirebaseAuth.instance.signOut().then((value) {

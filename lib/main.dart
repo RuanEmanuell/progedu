@@ -7,7 +7,7 @@ import "controller/controller.dart";
 import 'firebase_options.dart';
 
 import "screens/home.dart";
-import "screens/register.dart";
+import 'screens/loginscreens/register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -4,14 +4,14 @@ import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/controller.dart';
+import '../../controller/controller.dart';
 
-import '../widgets/loginwidgets/maintext.dart';
-import '../widgets/loginwidgets/logo.dart';
-import '../widgets/loginwidgets/input.dart';
+import '../../widgets/loginwidgets/maintext.dart';
+import '../../widgets/loginwidgets/logo.dart';
+import '../../widgets/loginwidgets/input.dart';
 
-import "forgot.dart";
-import "home.dart";
+import 'forgot.dart';
+import '../home.dart';
 
 class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();

@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:provider/provider.dart';
 
-import '../controller/controller.dart';
+import '../../controller/controller.dart';
 
-import '../widgets/loginwidgets/maintext.dart';
-import '../widgets/loginwidgets/input.dart';
-import '../widgets/loginwidgets/mainbutton.dart';
+import '../../widgets/loginwidgets/maintext.dart';
+import '../../widgets/loginwidgets/input.dart';
+import '../../widgets/loginwidgets/mainbutton.dart';
 
 class ForgotScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -30,7 +30,7 @@ class ForgotScreen extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
             content: Text(e.message == "Given String is empty or null"
-                ? "One or more fields are empty"
+                ? "Type your email"
                 : e.message!)));
       }
     }

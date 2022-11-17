@@ -3,14 +3,14 @@ import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/controller.dart';
+import '../../controller/controller.dart';
 
-import "login.dart";
-import "home.dart";
-import '../widgets/loginwidgets/maintext.dart';
-import '../widgets/loginwidgets/mainbutton.dart';
-import '../widgets/loginwidgets/logo.dart';
-import '../widgets/loginwidgets/input.dart';
+import 'login.dart';
+import 'name.dart';
+import '../../widgets/loginwidgets/maintext.dart';
+import '../../widgets/loginwidgets/mainbutton.dart';
+import '../../widgets/loginwidgets/logo.dart';
+import '../../widgets/loginwidgets/input.dart';
 
 class RegisterScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -29,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
             .then(((value) {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {
-              return HomeScreen();
+              return NameScreen();
             },
           ));
         }));
