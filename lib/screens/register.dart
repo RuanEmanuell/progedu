@@ -7,10 +7,10 @@ import '../controller/controller.dart';
 
 import "login.dart";
 import "home.dart";
-import '../widgets/loginregisterwidgets/maintext.dart';
-import '../widgets/loginregisterwidgets/mainbutton.dart';
-import '../widgets/loginregisterwidgets/logo.dart';
-import '../widgets/loginregisterwidgets/input.dart';
+import '../widgets/loginwidgets/maintext.dart';
+import '../widgets/loginwidgets/mainbutton.dart';
+import '../widgets/loginwidgets/logo.dart';
+import '../widgets/loginwidgets/input.dart';
 
 class RegisterScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -25,7 +25,7 @@ class RegisterScreen extends StatelessWidget {
       try {
         await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text)
+                email: emailController.text.trim(), password: passwordController.text.trim())
             .then(((value) {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {

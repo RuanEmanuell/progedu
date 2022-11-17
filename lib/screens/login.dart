@@ -1,4 +1,4 @@
-import 'package:alarme/widgets/loginregisterwidgets/mainbutton.dart';
+import 'package:alarme/widgets/loginwidgets/mainbutton.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -6,11 +6,12 @@ import 'package:provider/provider.dart';
 
 import '../controller/controller.dart';
 
-import '../widgets/loginregisterwidgets/maintext.dart';
-import '../widgets/loginregisterwidgets/logo.dart';
-import '../widgets/loginregisterwidgets/input.dart';
+import '../widgets/loginwidgets/maintext.dart';
+import '../widgets/loginwidgets/logo.dart';
+import '../widgets/loginwidgets/input.dart';
 
-import "../screens/home.dart";
+import "forgot.dart";
+import "home.dart";
 
 class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -24,7 +25,8 @@ class LoginScreen extends StatelessWidget {
     loginAction() async {
       try {
         await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
+            .signInWithEmailAndPassword(
+                email: emailController.text.trim(), password: passwordController.text.trim())
             .then(((value) {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {
@@ -58,7 +60,11 @@ class LoginScreen extends StatelessWidget {
                   margin: EdgeInsets.only(right: screenWidth / 15),
                   alignment: Alignment.centerRight,
                   child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return ForgotScreen();
+                        }));
+                      },
                       child: Text("Forgot your password?",
                           style: GoogleFonts.vt323(fontSize: screenWidth / 20, color: Colors.yellow))),
                 ),
