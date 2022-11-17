@@ -12,7 +12,7 @@ import '../home.dart';
 
 class NameScreen extends StatelessWidget {
   var nameController = TextEditingController();
-    var user = FirebaseAuth.instance.currentUser;
+  var user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +21,18 @@ class NameScreen extends StatelessWidget {
 
     nameAction() async {
       try {
-        await user!.updateDisplayName(nameController.text.trim())
-            .then(((value) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:(context) {
-                return HomeScreen();
-              },
-            )
-          );
+        await user!.updateDisplayName(nameController.text.trim()).then(((value) {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return HomeScreen();
+            },
+          ));
         }));
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
-            content: Text(e.message == "Given String is empty or null"
-                ? "Type your nickname"
-                : e.message!)));
+            content:
+                Text(e.message == "Given String is empty or null" ? "Type your nickname" : e.message!)));
       }
     }
 
@@ -46,18 +41,18 @@ class NameScreen extends StatelessWidget {
         body: Consumer<Controller>(builder: (context, value, child) {
           return OrientationBuilder(builder: (context, orientation) {
             return Center(
-                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  MainText(text: "What's your nickname?"),
-                  SizedBox(height: screenHeight / 60),
-                  InputWidget(controller: nameController, value: value, hintText: "Type your nickname..."),
-                  MainButton(
-                      onPressed: () {
-                        nameAction();
-                      },
-                      orientation: orientation,
-                      text: "Choose nickname")
-                ]),
-              );
+              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                MainText(text: "What's your nickname?"),
+                SizedBox(height: screenHeight / 60),
+                InputWidget(controller: nameController, value: value, hintText: "Type your nickname..."),
+                MainButton(
+                    onPressed: () {
+                      nameAction();
+                    },
+                    orientation: orientation,
+                    text: "Choose nickname")
+              ]),
+            );
           });
         }));
   }

@@ -29,9 +29,8 @@ class ForgotScreen extends StatelessWidget {
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
-            content: Text(e.message == "Given String is empty or null"
-                ? "Type your email"
-                : e.message!)));
+            content:
+                Text(e.message == "Given String is empty or null" ? "Type your email" : e.message!)));
       }
     }
 
@@ -58,7 +57,8 @@ class ForgotScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.arrow_back, size: screenWidth / 10, color: Colors.yellow)),
+                    icon: Icon(Icons.arrow_back,
+                        size: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
               )
             ]);
           });
