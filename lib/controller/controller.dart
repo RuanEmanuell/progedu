@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class Controller extends ChangeNotifier {
   var inputColor = const Color.fromARGB(255, 253, 228, 0);
 
+  var questionCount = 0;
+
   void inputTap() {
     inputColor = const Color.fromARGB(255, 253, 228, 0);
     notifyListeners();

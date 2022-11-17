@@ -1,3 +1,4 @@
+import 'package:alarme/screens/quiz.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 27, 27, 27),
+        backgroundColor: const Color.fromARGB(255, 56, 56, 56),
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 27, 27, 27),
           elevation: 0,
@@ -60,8 +61,7 @@ class HomeScreen extends StatelessWidget {
                           fontSize: screenWidth / 14, color: const Color.fromARGB(255, 0, 255, 8))),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 56, 56, 56), borderRadius: BorderRadius.circular(10)),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                   height: screenHeight / 1.44,
                   child: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -69,7 +69,11 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          print(index);
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return QuizScreen(index: index);
+                            },
+                          ));
                         },
                         child: Container(
                             margin: const EdgeInsets.all(15),
