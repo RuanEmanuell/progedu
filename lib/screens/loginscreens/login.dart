@@ -1,4 +1,4 @@
-import 'package:alarme/widgets/loginwidgets/mainbutton.dart';
+import 'package:alarme/widgets/login/mainbutton.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 
-import '../../widgets/loginwidgets/maintext.dart';
-import '../../widgets/loginwidgets/logo.dart';
-import '../../widgets/loginwidgets/input.dart';
+import '../../widgets/login/maintext.dart';
+import '../../widgets/login/logo.dart';
+import '../../widgets/login/input.dart';
 
 import 'forgot.dart';
 import '../home.dart';

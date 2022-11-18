@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 
-import '../../widgets/loginwidgets/maintext.dart';
-import '../../widgets/loginwidgets/input.dart';
-import '../../widgets/loginwidgets/mainbutton.dart';
+import '../../widgets/login/maintext.dart';
+import '../../widgets/login/input.dart';
+import '../../widgets/login/mainbutton.dart';
 
 import '../home.dart';
 

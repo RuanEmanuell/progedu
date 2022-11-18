@@ -12,10 +12,15 @@ Map<String, dynamic> questions = {
       "anwsers": ["Losing", "Chichi", "Needles", "Vegeta"],
       "correct": "Needles"
     },
+    {
+      "question": "What's Goku biggest feAAAAAAAar?",
+      "anwsers": ["Losing", "Chichi", "Needles", "Vegeta"],
+      "correct": "Needles"
+    },
   ],
   "css": [
     {
-      "question": "What's Goku biggesAAAAAAAAAt fear?",
+      "question": "What's CSS?",
       "anwsers": ["Losing", "Chichi", "Needles", "Vegeta"],
       "correct": "Needles"
     },

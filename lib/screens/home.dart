@@ -69,6 +69,9 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
+                          value.questionCount = 0;
+                          value.correctCount = 0;
+                          value.correct = false;
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
                               return QuizScreen(index: index);
