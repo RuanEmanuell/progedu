@@ -8,16 +8,20 @@ class Controller extends ChangeNotifier {
 
   bool correct = false;
 
+  bool tappable = true;
+
   void passQuestion() {
     Future.delayed(const Duration(seconds: 3), () {
       correct = false;
       questionCount++;
+      tappable = true;
       notifyListeners();
     });
   }
 
   void showCorrect() {
     correct = true;
+    tappable = false;
     notifyListeners();
   }
 
