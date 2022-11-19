@@ -252,8 +252,8 @@ Map<String, dynamic> questions = {
     },
     {
       "question": "How do you print something in the browser console using JavaScript?",
-      "anwsers": ["print()", "printf()", "console.log", "System.out.print()"],
-      "correct": "console.log"
+      "anwsers": ["print()", "printf()", "console.log()", "System.out.print()"],
+      "correct": "console.log()"
     },
     {
       "question": "How do you define a variable in JavaScript?",
@@ -332,14 +332,104 @@ Map<String, dynamic> questions = {
   ],
   "phyton": [
     {
-      "question": "What's Goku biggesAAAAAAAAAt fear?",
-      "anwsers": ["Losing", "Chichi", "Needles", "Vegeta"],
-      "correct": "Needles"
+      "question": "How do you print something in the console using Phyton?",
+      "anwsers": ["echo()", "console.log()", "print()", "prinf()"],
+      "correct": "print()"
     },
     {
-      "question": "Who's the first to die in DBZ?",
-      "anwsers": ["Raditz", "Farmer", "Nappa", "Goku"],
-      "correct": "Farmer"
+      "question": "How do you create a function in Phyton?",
+      "anwsers": ["function function()", "def function()"],
+      "correct": "def function()"
+    },
+    {
+      "question": "How do you declare variable with value of 5 in Phyton?",
+      "anwsers": ["var x=5", "let x=5", "x=5"],
+      "correct": "x=5"
+    },
+    {
+      "question": "Which of these isn't a Phyton framework?",
+      "anwsers": ["Django", "FastAPI", "Flask", "Next"],
+      "correct": "Next"
+    },
+    {
+      "question": "Is Phyton a weakly typing programming language?",
+      "anwsers": ["Yes", "No"],
+      "correct": "Yes"
+    },
+    {
+      "question": "When Phyton was created?",
+      "anwsers": ["1991", "1995", "2001", "2005"],
+      "correct": "1991"
+    },
+    {
+      "question": "How to convert a String to Int in Phyton?",
+      "anwsers": ["int.parse('string')", "parseInt('string')", "int('string')", "parse('string')"],
+      "correct": "int('string')"
+    },
+    {
+      "question": "Phyton was based in which of these languages?",
+      "anwsers": ["Java", "C", "JavaScript", "PHP"],
+      "correct": "C"
+    },
+    {
+      "question": "What do you can use to create games with Phyton?",
+      "anwsers": ["Flame", "React", "PyGame", "Adonis"],
+      "correct": "PyGame"
+    },
+    {
+      "question": "How to convert an Int to String in Phyton?",
+      "anwsers": ["str(int)", "int.toString()"],
+      "correct": "str(int)"
+    },
+    {
+      "question": "What do you can use to create games with Phyton?",
+      "anwsers": ["Flame", "React", "PyGame", "Adonis"],
+      "correct": "PyGame"
+    },
+    {
+      "question": "How to define an array in Phyton?",
+      "anwsers": ["[]", "{}"],
+      "correct": "[]"
+    },
+    {
+      "question": "How to comment in Phyton?",
+      "anwsers": ["#comment", "/*comment*/", "//comment"],
+      "correct": "#comment"
+    },
+    {
+      "question": "How to create an input for the user to type a text in Phyton?",
+      "anwsers": ["alert()", "input()", "textField()"],
+      "correct": "input()"
+    },
+    {
+      "question": "How to remove empty spaces in a string in Phyton?",
+      "anwsers": ["String.trim()", "String.strip()", "String.format()"],
+      "correct": "String.strip()"
+    },
+    {
+      "question": "What isn't JavaScript commonly used for?",
+      "anwsers": ["Front-end development", "Back-end development", "Data Science", "Machine Learning"],
+      "correct": "Front-end development"
+    },
+    {
+      "question": "Which keyword allows you to load a module in Python?",
+      "anwsers": ["import", "load", "include"],
+      "correct": "import"
+    },
+    {
+      "question": "Which of these statements creates a loop in Phyton?",
+      "anwsers": ["for", "if", "continue"],
+      "correct": "for"
+    },
+    {
+      "question": "How to display a list in alphabetical order in Phyton?",
+      "anwsers": ["list.display()", "list.order()", "list.sort()"],
+      "correct": "list.sort()"
+    },
+    {
+      "question": "Which of these isn't a primitive type in Phyton?",
+      "anwsers": ["string", "boolean", "int", "const"],
+      "correct": "int"
     },
   ],
   "flutter": [
