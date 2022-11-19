@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 
+import "../models/questions.dart";
 import "../screens/loginscreens/register.dart";
 
 class HomeScreen extends StatelessWidget {
@@ -65,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                   height: screenHeight / 1.44,
                   child: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                    itemCount: 7,
+                    itemCount: quizes.length,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {

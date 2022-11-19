@@ -43,7 +43,7 @@ class QuizScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: screenHeight / 15, top: screenHeight / 10),
+                    margin: EdgeInsets.only(bottom: screenHeight / 15, top: screenHeight / 15),
                     child: Text(
                       "${quizes[index]} - question ${value.questionCount + 1}".toUpperCase(),
                       textAlign: TextAlign.center,
@@ -51,17 +51,20 @@ class QuizScreen extends StatelessWidget {
                           fontSize: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8)),
                     ),
                   ),
-                  Text(
-                    questions[quizes[index]][value.questionCount]["question"],
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.vt323(
-                        fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8)),
+                  Container(
+                    margin: EdgeInsets.only(left: screenWidth / 30, right: screenWidth / 30),
+                    child: Text(
+                      questions[quizes[index]][value.questionCount]["question"],
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.vt323(
+                          fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8)),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(
                         top: screenHeight /
                             questions[quizes[index]][value.questionCount]["anwsers"].length /
-                            5),
+                            4),
                     height: screenHeight,
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
