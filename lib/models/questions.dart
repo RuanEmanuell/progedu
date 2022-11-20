@@ -357,7 +357,7 @@ Map<String, dynamic> questions = {
       "correct": "Yes"
     },
     {
-      "question": "When Phyton was created?",
+      "question": "Phyton was created in the year ____",
       "anwsers": ["1991", "1995", "2001", "2005"],
       "correct": "1991"
     },
@@ -434,14 +434,108 @@ Map<String, dynamic> questions = {
   ],
   "flutter": [
     {
-      "question": "What's Goku biggesAAAAAAAAAt fear?",
-      "anwsers": ["Losing", "Chichi", "Needles", "Vegeta"],
-      "correct": "Needles"
+      "question": "Flutter is a _____",
+      "anwsers": ["Framework", "Programming Language", "Superset", "Runtime"],
+      "correct": "Framework"
     },
     {
-      "question": "Who's the first to die in DBZ?",
-      "anwsers": ["Raditz", "Farmer", "Nappa", "Goku"],
-      "correct": "Farmer"
+      "question": "Which is the Flutter main language?",
+      "anwsers": ["C++", "C#", "Javascript", "Dart"],
+      "correct": "Dart"
+    },
+    {
+      "question": "When Flutter was launched?",
+      "anwsers": ["2002", "2007", "2012", "2017"],
+      "correct": "2017"
+    },
+    {
+      "question": "Flutter is NOT used for:",
+      "anwsers": ["Mobile development", "Web development", "Desktop development", "Data science"],
+      "correct": "Data science"
+    },
+    {
+      "question": "Flutter was created by:",
+      "anwsers": ["Google", "Meta", "Amazon", "Microsoft"],
+      "correct": "Google"
+    },
+    {
+      "question": "Which is Flutter most prominent rival in cross-platform mobile development?",
+      "anwsers": ["Vue Native", "Kotlin", "Swift", "React Native"],
+      "correct": "React Native"
+    },
+    {
+      "question": "You can use For Loop in your layout in Flutter to create various widgets",
+      "anwsers": ["Yes", "No"],
+      "correct": "Yes"
+    },
+    {
+      "question": "Dart is a high-level AND strongly tipped programming language?",
+      "anwsers": ["Yes", "No", "Only strongly tipped", "Only high level"],
+      "correct": "Yes"
+    },
+    {
+      "question": "How's called a widget in Flutter that CAN'T change state?",
+      "anwsers": ["StatefulWidget", "StatelessWidget", "InheritWidget", "ImuttableWidget"],
+      "correct": "StatelessWidget"
+    },
+    {
+      "question": "How's called a widget in Flutter that CAN change state",
+      "anwsers": ["InheritWidget", "ImuttableWidget", "StatefulWidget", "StatelessWidget"],
+      "correct": "StatefulWidget"
+    },
+    {
+      "question": "How do you change the state of a StatefulWidget?",
+      "anwsers": ["Using setState()", "Using changeState()", "Using changeWidget()"],
+      "correct": "Using setState()"
+    },
+    {
+      "question": "How do you define a variable in Dart?",
+      "anwsers": ["var", "val", "variable"],
+      "correct": "var"
+    },
+    {
+      "question": "Can you use classes in Dart?",
+      "anwsers": ["Yes", "No", "Only if you are using Flutter"],
+      "correct": "Yes"
+    },
+    {
+      "question": "How to print something in the console in Dart?",
+      "anwsers": ["console.log()", "print()", "Console.Write()", "printf()"],
+      "correct": "print()"
+    },
+    {
+      "question": "How to create Widget that exhibits text in Flutter?",
+      "anwsers": ["Text()", "Paragraph()", "Line()", "Print()"],
+      "correct": "Text()"
+    },
+    {
+      "question": "How to exhibit a LOCAL image in Flutter?",
+      "anwsers": ["Image.asset()", "Image.local()"],
+      "correct": "Image.asset()"
+    },
+    {
+      "question": "How to exhibit an image from the INTERNET in Flutter?",
+      "anwsers": ["Image.internet()", "Image.network()"],
+      "correct": "Image.network()"
+    },
+    {
+      "question": "How to create a Widget List in Flutter?",
+      "anwsers": ["List[]", "List()", "ListView()"],
+      "correct": "ListView()"
+    },
+    {
+      "question": "Flutter has 2 types of design systems._____ and _____?",
+      "anwsers": [
+        "Material Design and Cupertino",
+        "Stateful and Stateless Widgets",
+        "Framework and Language"
+      ],
+      "correct": "Material Design and Cupertino"
+    },
+    {
+      "question": "Which keyword allows you to load a library in Dart?",
+      "anwsers": ["import", "load", "include"],
+      "correct": "import"
     },
   ]
 };
