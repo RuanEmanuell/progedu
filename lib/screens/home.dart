@@ -1,4 +1,4 @@
-import 'package:alarme/screens/quiz.dart';
+import 'package:alarme/screens/challenge.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 
-import "../models/questions.dart";
+import '../models/questions1.dart';
 import "../screens/loginscreens/register.dart";
 
 class HomeScreen extends StatelessWidget {
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                             value.correct = false;
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return QuizScreen(index: index);
+                                return ChallengeScreen(index: index);
                               },
                             ));
                           },

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 
-import "../models/questions.dart";
+import '../models/questions1.dart';
 
 class QuizScreen extends StatelessWidget {
   var index;
@@ -77,19 +77,19 @@ class QuizScreen extends StatelessWidget {
                         return InkWell(
                           onTap: () {
                             if (value.tappable) {
+                              if (questions[quizes[index]][value.questionCount]["anwsers"][listIndex] ==
+                                  questions[quizes[index]][value.questionCount]["correct"]) {
+                                value.correctQuestion();
+                              }
                               if (value.questionCount < questions[quizes[index]].length - 1) {
                                 value.showCorrect();
-                                questions[quizes[index]][value.questionCount]["anwsers"][listIndex] ==
-                                        questions[quizes[index]][value.questionCount]["correct"]
-                                    ? value.correctQuestion()
-                                    : false;
                                 value.passQuestion();
                               } else {
                                 value.showCorrect();
                                 FirebaseFirestore.instance
                                     .collection(user!.uid)
                                     .doc(index.toString())
-                                    .set({quizes[index]: "100"});
+                                    .set({quizes[index]: "50"});
                                 Future.delayed(const Duration(seconds: 3), () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
