@@ -21,6 +21,9 @@ class InputWidget extends StatelessWidget {
           bottom: screenHeight / 80),
       child: TextFormField(
           controller: controller,
+          onChanged:(newValue){
+            value.changeAnwser();
+          },
           onTap: () {
             value.inputTap();
           },

@@ -5,8 +5,8 @@ import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/controller.dart';
 
+import '../controller/controller.dart';
 import '../models/questions1.dart';
 import "../screens/loginscreens/register.dart";
 

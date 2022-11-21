@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Controller extends ChangeNotifier {
+
+  var controller;
+
   var inputColor = const Color.fromARGB(255, 253, 228, 0);
 
   var questionCount = 0;
@@ -9,6 +12,13 @@ class Controller extends ChangeNotifier {
   bool correct = false;
 
   bool tappable = true;
+
+  var awnserText="Your code will be here...";
+
+  changeAnwser(){
+    awnserText=controller.text;
+    notifyListeners();
+  }
 
   void passQuestion() {
     Future.delayed(const Duration(seconds: 3), () {

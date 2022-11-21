@@ -3,8 +3,8 @@ import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/controller.dart';
 
+import '../../controller/controller.dart';
 import 'login.dart';
 import 'name.dart';
 import '../../widgets/login/maintext.dart';

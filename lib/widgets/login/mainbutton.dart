@@ -6,7 +6,7 @@ class MainButton extends StatelessWidget {
   var orientation;
   var text;
 
-  MainButton({required this.onPressed, required this.orientation, required this.text});
+  MainButton({required this.onPressed, this.orientation, required this.text});
 
   @override
   Widget build(BuildContext context) {

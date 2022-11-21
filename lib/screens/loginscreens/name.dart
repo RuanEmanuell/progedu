@@ -4,8 +4,8 @@ import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:provider/provider.dart';
 
-import '../../controller/controller.dart';
 
+import '../../controller/controller.dart';
 import '../../widgets/login/maintext.dart';
 import '../../widgets/login/input.dart';
 import '../../widgets/login/mainbutton.dart';

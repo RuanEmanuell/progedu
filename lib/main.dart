@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import "package:provider/provider.dart";
 import 'package:firebase_core/firebase_core.dart';
 
-import "controller/controller.dart";
+import 'controller/controller.dart';
 import 'firebase_options.dart';
 
 import "screens/home.dart";
