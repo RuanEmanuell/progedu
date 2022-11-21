@@ -1,4 +1,6 @@
 import 'package:alarme/screens/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +18,8 @@ class QuizScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
+
+    var user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
@@ -82,6 +86,10 @@ class QuizScreen extends StatelessWidget {
                                 value.passQuestion();
                               } else {
                                 value.showCorrect();
+                                FirebaseFirestore.instance
+                                    .collection(user!.uid)
+                                    .doc(index.toString())
+                                    .set({quizes[index]: "100"});
                                 Future.delayed(const Duration(seconds: 3), () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {

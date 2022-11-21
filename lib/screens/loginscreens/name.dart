@@ -1,3 +1,5 @@
+import 'package:alarme/models/questions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:provider/provider.dart';
@@ -21,6 +23,12 @@ class NameScreen extends StatelessWidget {
 
     nameAction() async {
       try {
+        for (var index = 0; index < quizes.length; index++) {
+          FirebaseFirestore.instance
+              .collection(user!.uid)
+              .doc(index.toString())
+              .set({quizes[index]: "0"});
+        }
         await user!.updateDisplayName(nameController.text.trim()).then(((value) {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {

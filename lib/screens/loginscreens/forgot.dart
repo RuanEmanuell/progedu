@@ -15,7 +15,6 @@ class ForgotScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
-
     resetPasswordAction() async {
       try {
         await FirebaseAuth.instance

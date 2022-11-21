@@ -1,4 +1,5 @@
 import 'package:alarme/screens/quiz.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +12,8 @@ import "../screens/loginscreens/register.dart";
 
 class HomeScreen extends StatelessWidget {
   var user = FirebaseAuth.instance.currentUser;
+  Stream<QuerySnapshot> collectionStream =
+      FirebaseFirestore.instance.collection(FirebaseAuth.instance.currentUser!.uid).snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -69,22 +72,59 @@ class HomeScreen extends StatelessWidget {
                     itemCount: quizes.length,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: () {
-                          value.questionCount = 0;
-                          value.correctCount = 0;
-                          value.correct = false;
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return QuizScreen(index: index);
-                            },
+                          onTap: () {
+                            value.questionCount = 0;
+                            value.correctCount = 0;
+                            value.correct = false;
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return QuizScreen(index: index);
+                              },
+                            ));
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(
+                              left: 35,
+                              right: 35,
+                            ),
+                            child: Wrap(children: [
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 5),
+                                child: Center(
+                                  child: Text(quizes[index].toUpperCase(),
+                                      style: GoogleFonts.vt323(
+                                          fontSize: screenWidth / 14,
+                                          color: const Color.fromARGB(255, 0, 255, 8))),
+                                ),
+                              ),
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(screenWidth / 50),
+                                  child: Image.asset("assets/images/$index.png")),
+                              StreamBuilder<QuerySnapshot>(
+                                  stream: collectionStream,
+                                  builder: (context, snapshot) {
+                                    return Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            margin: const EdgeInsets.only(top: 5),
+                                            color: const Color.fromARGB(255, 0, 255, 8),
+                                            width: screenWidth *
+                                                int.parse(snapshot.data!.docs[index][quizes[index]]) /
+                                                100,
+                                            height: screenHeight / 100),
+                                        Center(
+                                          child: Text(
+                                              "${snapshot.data!.docs[index][quizes[index]]}% concluded",
+                                              style: GoogleFonts.vt323(
+                                                  fontSize: screenWidth / 20,
+                                                  color: const Color.fromARGB(255, 0, 255, 8))),
+                                        ),
+                                      ],
+                                    );
+                                  }),
+                            ]),
                           ));
-                        },
-                        child: Container(
-                            margin: const EdgeInsets.all(15),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(screenWidth / 50),
-                                child: Image.asset("assets/images/$index.png"))),
-                      );
                     },
                   ),
                 )
