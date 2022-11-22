@@ -5,7 +5,6 @@ import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-
 import '../controller/controller.dart';
 import '../models/questions1.dart';
 
@@ -61,7 +60,8 @@ class ChallengeScreen extends StatelessWidget {
                         opacity: 0.3, fit: BoxFit.cover, image: AssetImage("assets/images/$index.png"))),
                 child: InkWell(
                   onTap: () {
-                    value.questionCount=0;
+                    value.questionCount = 0;
+                    value.correctCount = 0;
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         return QuizScreen(index: index);
@@ -88,7 +88,8 @@ class ChallengeScreen extends StatelessWidget {
                         opacity: 0.3, fit: BoxFit.cover, image: AssetImage("assets/images/$index.png"))),
                 child: InkWell(
                   onTap: () {
-                    value.questionCount=0;
+                    value.questionCount = 0;
+                    value.correctCount = 0;
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         return ExerciceScreen(index: index);

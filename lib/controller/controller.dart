@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Controller extends ChangeNotifier {
-
   var controller;
 
   var inputColor = const Color.fromARGB(255, 253, 228, 0);
@@ -9,14 +8,17 @@ class Controller extends ChangeNotifier {
   var questionCount = 0;
   var correctCount = 0;
 
+  bool correctTextController = false;
   bool correct = false;
 
   bool tappable = true;
 
-  var awnserText="Your code will be here...";
+  var awnserText = "Your code will be here...";
 
-  changeAnwser(){
-    awnserText=controller.text;
+  var correctColorController = Colors.red;
+
+  changeAnwser() {
+    awnserText = controller.text;
     notifyListeners();
   }
 
@@ -25,6 +27,9 @@ class Controller extends ChangeNotifier {
       correct = false;
       questionCount++;
       tappable = true;
+      correctColorController = Colors.red;
+      correctTextController = false;
+      awnserText = "";
       notifyListeners();
     });
   }
@@ -37,7 +42,8 @@ class Controller extends ChangeNotifier {
 
   void correctQuestion() {
     correctCount++;
-    correct = true;
+    correctTextController = true;
+    correctColorController = Colors.green;
     notifyListeners();
   }
 

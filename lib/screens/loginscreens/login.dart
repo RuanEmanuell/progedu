@@ -5,7 +5,6 @@ import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-
 import '../../widgets/login/maintext.dart';
 import '../../widgets/login/logo.dart';
 import '../../widgets/login/input.dart';

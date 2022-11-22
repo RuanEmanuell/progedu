@@ -12,7 +12,6 @@ Map<String, dynamic> questions2 = {
       "hint": "It starts with <p>",
       "anwser": "<p></p>",
     },
-    
   ],
   "css": [
     {
