@@ -176,7 +176,7 @@ Map<String, dynamic> questions = {
     },
     {
       "question": "Which property do we change to increase internal spacing in an element?",
-      "anwsers": ["padding", "margin", "space", "internal-space"],
+      "anwsers": ["padding", "margin", "sp ace", "internal-space"],
       "correct": "padding"
     },
     {

@@ -29,7 +29,7 @@ class Controller extends ChangeNotifier {
       tappable = true;
       correctColorController = Colors.red;
       correctTextController = false;
-      awnserText = "";
+      awnserText = "Your code will be here...";
       notifyListeners();
     });
   }
