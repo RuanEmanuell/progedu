@@ -1,4 +1,5 @@
 import 'package:alarme/models/questions2.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../controller/controller.dart';
 import "../widgets/login/input.dart";
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/login/mainbutton.dart';
+import 'home.dart';
 
 class ExerciceScreen extends StatelessWidget {
   var index;
@@ -15,14 +17,16 @@ class ExerciceScreen extends StatelessWidget {
 
   var anwserController = TextEditingController();
 
+  var user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
-    var user = FirebaseAuth.instance.currentUser;
-
     Provider.of<Controller>(context, listen: false).controller = anwserController;
+
+    var firebaseRef = FirebaseFirestore.instance.collection(user!.uid).doc(index.toString());
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
@@ -136,14 +140,41 @@ class ExerciceScreen extends StatelessWidget {
               SizedBox(
                 height: screenHeight / 7.5,
                 child: MainButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (value.tappable && anwserController.text.isNotEmpty) {
                         if (questions2[quizes2[index]][value.questionCount]["anwser"] ==
                             value.awnserText) {
                           value.correctQuestion();
                         }
-                        value.showCorrect();
-                        value.passQuestion();
+                        if (value.questionCount < questions2[quizes2[index]].length - 1) {
+                          value.showCorrect();
+                          value.passQuestion();
+                        } else {
+                          value.showCorrect();
+                          var firebaseCompleteRef = await FirebaseFirestore.instance
+                              .collection(user!.uid)
+                              .doc("complete$index")
+                              .get();
+                          var firebaseCompleteRef2 = await FirebaseFirestore.instance
+                              .collection(user!.uid)
+                              .doc("complete$index 2")
+                              .get();
+                          if (firebaseCompleteRef.exists && !firebaseCompleteRef2.exists) {
+                            firebaseRef.set({quizes2[index]: "100"});
+                            FirebaseFirestore.instance
+                                .collection(user!.uid)
+                                .doc("complete$index 2")
+                                .set({"complete": "completed"});
+                          }
+                          value.tappable = true;
+                          Future.delayed(const Duration(seconds: 3), () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return HomeScreen();
+                              },
+                            ));
+                          });
+                        }
                         anwserController.text = "";
                       }
                     },

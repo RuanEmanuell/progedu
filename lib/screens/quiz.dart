@@ -13,12 +13,14 @@ class QuizScreen extends StatelessWidget {
 
   QuizScreen({required this.index});
 
+  var user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
-    var user = FirebaseAuth.instance.currentUser;
+    var firebaseRef = FirebaseFirestore.instance.collection(user!.uid).doc(index.toString());
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
@@ -74,7 +76,7 @@ class QuizScreen extends StatelessWidget {
                       itemCount: questions[quizes[index]][value.questionCount]["anwsers"].length,
                       itemBuilder: (context, listIndex) {
                         return InkWell(
-                          onTap: () {
+                          onTap: () async {
                             if (value.tappable) {
                               if (questions[quizes[index]][value.questionCount]["anwsers"][listIndex] ==
                                   questions[quizes[index]][value.questionCount]["correct"]) {
@@ -85,10 +87,18 @@ class QuizScreen extends StatelessWidget {
                                 value.passQuestion();
                               } else {
                                 value.showCorrect();
-                                FirebaseFirestore.instance
+                                var firebaseCompleteRef = await FirebaseFirestore.instance
                                     .collection(user!.uid)
-                                    .doc(index.toString())
-                                    .set({quizes[index]: "50"});
+                                    .doc("complete$index")
+                                    .get();
+                                if (!firebaseCompleteRef.exists) {
+                                  firebaseRef.set({quizes[index]: "66"});
+                                  FirebaseFirestore.instance
+                                      .collection(user!.uid)
+                                      .doc(("complete$index").toString())
+                                      .set({"complete": "completed"});
+                                }
+                                value.tappable = true;
                                 Future.delayed(const Duration(seconds: 3), () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {

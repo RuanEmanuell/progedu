@@ -110,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                                             color: const Color.fromARGB(255, 0, 255, 8),
                                             width: screenWidth *
                                                 int.parse(snapshot.data!.docs[index][quizes[index]]) /
-                                                100,
+                                                300,
                                             height: screenHeight / 100),
                                         Center(
                                           child: Text(
