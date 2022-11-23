@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 class Controller extends ChangeNotifier {
   var controller;
 
+  var selectedPageIndex = 0;
+
+  void changeBottomNavigation() {
+    selectedPageIndex = selectedPageIndex;
+    notifyListeners();
+  }
+
   var inputColor = const Color.fromARGB(255, 253, 228, 0);
 
   var questionCount = 0;
