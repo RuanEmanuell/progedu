@@ -9,7 +9,7 @@ import '../../widgets/login/maintext.dart';
 import '../../widgets/login/input.dart';
 import '../../widgets/login/mainbutton.dart';
 
-import '../home.dart';
+import '../gamescreens/home.dart';
 
 class NameScreen extends StatelessWidget {
   var nameController = TextEditingController();

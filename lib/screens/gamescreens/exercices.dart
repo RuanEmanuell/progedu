@@ -1,14 +1,14 @@
 import 'package:alarme/models/questions2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../controller/controller.dart';
-import "../widgets/login/input.dart";
+import '../../controller/controller.dart';
+import '../../main.dart';
+import '../../widgets/login/input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/login/mainbutton.dart';
-import 'home.dart';
+import '../../widgets/login/mainbutton.dart';
 
 class ExerciceScreen extends StatelessWidget {
   var index;
@@ -166,11 +166,15 @@ class ExerciceScreen extends StatelessWidget {
                                 .doc("complete$index 2")
                                 .set({"complete": "completed"});
                           }
+                          FirebaseFirestore.instance
+                              .collection("quizrankings")
+                              .doc(("${value.correctCount.toString()} ${user!.displayName}"))
+                              .set({"name": user!.displayName, "rank": value.correctCount.toString()});
                           value.tappable = true;
                           Future.delayed(const Duration(seconds: 3), () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return HomeScreen();
+                                return MyApp();
                               },
                             ));
                           });

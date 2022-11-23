@@ -1,12 +1,12 @@
-import 'package:alarme/screens/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/controller.dart';
-import '../models/questions1.dart';
+import '../../controller/controller.dart';
+import '../../main.dart';
+import '../../models/questions1.dart';
 
 class QuizScreen extends StatelessWidget {
   var index;
@@ -99,10 +99,17 @@ class QuizScreen extends StatelessWidget {
                                       .set({"complete": "completed"});
                                 }
                                 value.tappable = true;
+                                FirebaseFirestore.instance
+                                    .collection("quizrankings")
+                                    .doc(("${value.correctCount.toString()} ${user!.displayName}"))
+                                    .set({
+                                  "name": user!.displayName,
+                                  "rank": value.correctCount.toString()
+                                });
                                 Future.delayed(const Duration(seconds: 3), () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
-                                      return HomeScreen();
+                                      return MyApp();
                                     },
                                   ));
                                 });

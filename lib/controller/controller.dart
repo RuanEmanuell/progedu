@@ -5,6 +5,13 @@ class Controller extends ChangeNotifier {
 
   var selectedPageIndex = 0;
 
+  bool loading = true;
+
+  void stopLoading() {
+    loading = false;
+    notifyListeners();
+  }
+
   void changeBottomNavigation() {
     selectedPageIndex = selectedPageIndex;
     notifyListeners();

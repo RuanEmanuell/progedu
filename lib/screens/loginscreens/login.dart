@@ -10,7 +10,7 @@ import '../../widgets/login/logo.dart';
 import '../../widgets/login/input.dart';
 
 import 'forgot.dart';
-import '../home.dart';
+import '../gamescreens/home.dart';
 
 class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();

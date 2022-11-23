@@ -1,13 +1,12 @@
-import 'package:alarme/screens/challenge.dart';
+import 'package:alarme/screens/gamescreens/challenge.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/controller.dart';
-import '../models/questions1.dart';
-import "../screens/loginscreens/register.dart";
+import '../../controller/controller.dart';
+import '../../models/questions1.dart';
 
 class HomeScreen extends StatelessWidget {
   var user = FirebaseAuth.instance.currentUser;
@@ -21,26 +20,6 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 27, 27, 27),
-          elevation: 0,
-          centerTitle: true,
-          title: Text("/ProgEdu",
-              style: GoogleFonts.vt323(
-                  fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8))),
-          leading: IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut().then((value) {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return RegisterScreen();
-                    },
-                  ));
-                });
-              },
-              icon: Icon(Icons.arrow_back,
-                  size: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
-        ),
         body: Consumer<Controller>(builder: (context, value, child) {
           return OrientationBuilder(builder: (context, orientation) {
             return SingleChildScrollView(
@@ -102,6 +81,14 @@ class HomeScreen extends StatelessWidget {
                               StreamBuilder<QuerySnapshot>(
                                   stream: collectionStream,
                                   builder: (context, snapshot) {
+                                    if (snapshot.hasError) {
+                                      return const Text('Something went wrong');
+                                    }
+
+                                    if (snapshot.connectionState == ConnectionState.waiting) {
+                                      return const CircularProgressIndicator();
+                                    }
+
                                     return Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
