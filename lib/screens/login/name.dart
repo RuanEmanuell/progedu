@@ -6,10 +6,10 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 import '../../widgets/login/maintext.dart';
-import '../../widgets/login/input.dart';
+import '../../widgets/general/input.dart';
 import '../../widgets/login/mainbutton.dart';
 
-import '../gamescreens/home.dart';
+import '../games/home.dart';
 
 class NameScreen extends StatelessWidget {
   var nameController = TextEditingController();

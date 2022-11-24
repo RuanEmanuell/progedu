@@ -2,16 +2,18 @@ import 'package:alarme/models/questions2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../controller/controller.dart';
 import '../../main.dart';
-import '../../widgets/login/input.dart';
+import '../../widgets/general/appbar.dart';
+import '../../widgets/general/input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/general/text.dart';
 import '../../widgets/login/mainbutton.dart';
 
 class ExerciceScreen extends StatelessWidget {
-  var index;
+  dynamic index;
 
   ExerciceScreen({required this.index});
 
@@ -30,22 +32,7 @@ class ExerciceScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 27, 27, 27),
-            elevation: 0,
-            centerTitle: true,
-            automaticallyImplyLeading: false,
-            title: Text("/ProgEdu",
-                style: GoogleFonts.vt323(
-                    fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8))),
-            actions: [
-              IconButton(
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.close,
-                      size: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
-            ]),
+        appBar: PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: CustomAppBar()),
         body: Consumer<Controller>(builder: (context, value, child) {
           return SingleChildScrollView(
               child: Column(
@@ -53,29 +40,23 @@ class ExerciceScreen extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(20),
                 child: Center(
-                  child: Text("${quizes2[index].toUpperCase()} - EXERCISE ${value.questionCount + 1}",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.vt323(
-                          fontSize: screenWidth / 11, color: const Color.fromARGB(255, 0, 255, 8))),
-                ),
+                    child: CustomText(
+                        text: "${quizes2[index].toUpperCase()} - EXERCISE ${value.questionCount + 1}",
+                        fontSize: screenWidth / 11)),
               ),
               Container(
                 margin: const EdgeInsets.all(20),
                 child: Center(
-                  child: Text(questions2[quizes2[index]][value.questionCount]["question"],
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.vt323(
-                          fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8))),
-                ),
+                    child: CustomText(
+                        text: questions2[quizes2[index]][value.questionCount]["question"],
+                        fontSize: screenWidth / 14)),
               ),
               Container(
                 margin: const EdgeInsets.all(20),
                 child: Center(
-                  child: Text("Hint: ${questions2[quizes2[index]][value.questionCount]["hint"]}",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.vt323(
-                          fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8))),
-                ),
+                    child: CustomText(
+                        text: "Hint: ${questions2[quizes2[index]][value.questionCount]["hint"]}",
+                        fontSize: screenWidth / 15)),
               ),
               SizedBox(height: screenHeight / 60),
               Container(

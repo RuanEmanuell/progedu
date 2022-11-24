@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import "package:provider/provider.dart";
 import 'package:firebase_core/firebase_core.dart';
 
 import 'controller/controller.dart';
 import 'firebase_options.dart';
 
-import 'screens/gamescreens/home.dart';
-import 'screens/loginscreens/register.dart';
-import 'screens/rankscreens/select.dart';
+import 'screens/games/home.dart';
+import 'screens/login/register.dart';
+import 'screens/rank/select.dart';
+import 'widgets/general/appbar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,26 +30,7 @@ class MyApp extends StatelessWidget {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 27, 27, 27),
-          elevation: 0,
-          centerTitle: true,
-          title: Text("/ProgEdu",
-              style: GoogleFonts.vt323(
-                  fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8))),
-          leading: IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut().then((value) {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return RegisterScreen();
-                    },
-                  ));
-                });
-              },
-              icon: Icon(Icons.arrow_back,
-                  size: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
-        ),
+        appBar: PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: CustomAppBar()),
         body: user == null
             ? RegisterScreen()
             : PageView(

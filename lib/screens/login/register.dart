@@ -9,7 +9,7 @@ import 'name.dart';
 import '../../widgets/login/maintext.dart';
 import '../../widgets/login/mainbutton.dart';
 import '../../widgets/login/logo.dart';
-import '../../widgets/login/input.dart';
+import '../../widgets/general/input.dart';
 
 class RegisterScreen extends StatelessWidget {
   var emailController = TextEditingController();

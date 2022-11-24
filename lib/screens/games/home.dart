@@ -1,4 +1,4 @@
-import 'package:alarme/screens/gamescreens/challenge.dart';
+import 'package:alarme/screens/games/challenge.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";

@@ -7,9 +7,11 @@ import 'package:provider/provider.dart';
 import '../../controller/controller.dart';
 import '../../main.dart';
 import '../../models/questions1.dart';
+import '../../widgets/general/appbar.dart';
+import '../../widgets/general/text.dart';
 
 class QuizScreen extends StatelessWidget {
-  var index;
+  dynamic index;
 
   QuizScreen({required this.index});
 
@@ -24,22 +26,7 @@ class QuizScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 27, 27, 27),
-            elevation: 0,
-            centerTitle: true,
-            automaticallyImplyLeading: false,
-            title: Text("/ProgEdu",
-                style: GoogleFonts.vt323(
-                    fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8))),
-            actions: [
-              IconButton(
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.close,
-                      size: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
-            ]),
+        appBar: PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: CustomAppBar()),
         body: Consumer<Controller>(builder: (context, value, child) {
           return SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
@@ -48,23 +35,15 @@ class QuizScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: screenHeight / 15, top: screenHeight / 15),
-                    child: Text(
-                      "${quizes[index]} - question ${value.questionCount + 1}".toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.vt323(
-                          fontSize: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8)),
-                    ),
-                  ),
+                      margin: EdgeInsets.only(bottom: screenHeight / 15, top: screenHeight / 15),
+                      child: CustomText(
+                          text: "${quizes[index]} - question ${value.questionCount + 1}".toUpperCase(),
+                          fontSize: screenWidth / 10)),
                   Container(
-                    margin: EdgeInsets.only(left: screenWidth / 30, right: screenWidth / 30),
-                    child: Text(
-                      questions[quizes[index]][value.questionCount]["question"],
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.vt323(
-                          fontSize: screenWidth / 15, color: const Color.fromARGB(255, 0, 255, 8)),
-                    ),
-                  ),
+                      margin: EdgeInsets.only(left: screenWidth / 30, right: screenWidth / 30),
+                      child: CustomText(
+                          text: questions[quizes[index]][value.questionCount]["question"],
+                          fontSize: screenWidth / 15)),
                   Container(
                     margin: EdgeInsets.only(
                         top: screenHeight /

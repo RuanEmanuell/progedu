@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 import '../../widgets/login/maintext.dart';
-import '../../widgets/login/input.dart';
+import '../../widgets/general/input.dart';
 import '../../widgets/login/mainbutton.dart';
 
 class ForgotScreen extends StatelessWidget {
