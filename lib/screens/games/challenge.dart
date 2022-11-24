@@ -12,9 +12,9 @@ import '../../widgets/general/languagebutton.dart';
 import '../../widgets/general/text.dart';
 
 class ChallengeScreen extends StatefulWidget {
-  dynamic index;
+  final dynamic index;
 
-  ChallengeScreen({required this.index});
+  ChallengeScreen({super.key, required this.index});
 
   @override
   State<ChallengeScreen> createState() => _ChallengeScreenState();

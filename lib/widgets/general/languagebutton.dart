@@ -2,12 +2,12 @@ import 'package:alarme/widgets/general/text.dart';
 import "package:flutter/material.dart";
 
 class LanguageButton extends StatelessWidget {
-  dynamic image;
-  dynamic text;
-  dynamic onTap;
-  dynamic child;
+  final dynamic image;
+  final dynamic text;
+  final dynamic onTap;
+  final dynamic child;
 
-  LanguageButton({required this.image, required this.text, required this.onTap, this.child});
+  const LanguageButton({super.key, required this.image, required this.text, required this.onTap, this.child});
 
   @override
   Widget build(BuildContext context) {

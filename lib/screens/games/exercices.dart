@@ -13,13 +13,13 @@ import '../../widgets/general/text.dart';
 import '../../widgets/login/mainbutton.dart';
 
 class ExerciceScreen extends StatelessWidget {
-  dynamic index;
+  final dynamic index;
 
-  ExerciceScreen({required this.index});
+  ExerciceScreen({super.key, required this.index});
 
-  var anwserController = TextEditingController();
+  final TextEditingController anwserController = TextEditingController();
 
-  var user = FirebaseAuth.instance.currentUser;
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {

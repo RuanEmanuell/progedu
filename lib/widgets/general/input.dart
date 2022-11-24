@@ -2,11 +2,11 @@ import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
 class InputWidget extends StatelessWidget {
-  var controller;
-  var value;
-  var hintText;
+  final dynamic controller;
+  final dynamic value;
+  final dynamic hintText;
 
-  InputWidget({required this.controller, required this.value, required this.hintText});
+  const InputWidget({super.key, required this.controller, required this.value, required this.hintText});
 
   @override
   Widget build(BuildContext context) {

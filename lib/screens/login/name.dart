@@ -12,8 +12,10 @@ import '../../widgets/login/mainbutton.dart';
 import '../games/home.dart';
 
 class NameScreen extends StatelessWidget {
-  var nameController = TextEditingController();
-  var user = FirebaseAuth.instance.currentUser;
+  NameScreen({super.key});
+  final TextEditingController nameController = TextEditingController();
+  final user = FirebaseAuth.instance.currentUser;
+
 
   @override
   Widget build(BuildContext context) {

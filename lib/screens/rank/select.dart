@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/general/languagebutton.dart';
+import '../../widgets/general/text.dart';
 import 'rank.dart';
 
 class SelectScreen extends StatelessWidget {
+  const SelectScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -36,11 +39,8 @@ class SelectScreen extends StatelessWidget {
                         ));
                       },
                       child: Center(
-                        child: Text(quizes[index].toUpperCase(),
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.vt323(
-                                fontSize: screenWidth / 10,
-                                color: const Color.fromARGB(255, 0, 255, 8))),
+                        child: CustomText(text:quizes[index].toUpperCase(),
+                        fontSize:screenWidth/10)
                       ));
                 })
           ],

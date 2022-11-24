@@ -11,9 +11,9 @@ import '../../widgets/general/appbar.dart';
 import '../../widgets/general/text.dart';
 
 class QuizScreen extends StatelessWidget {
-  dynamic index;
+  final dynamic index;
 
-  QuizScreen({required this.index});
+  QuizScreen({super.key, required this.index});
 
   var user = FirebaseAuth.instance.currentUser;
 

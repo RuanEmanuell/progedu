@@ -12,8 +12,10 @@ import '../../widgets/login/logo.dart';
 import '../../widgets/general/input.dart';
 
 class RegisterScreen extends StatelessWidget {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  RegisterScreen({super.key});
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

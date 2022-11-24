@@ -9,8 +9,10 @@ import '../../controller/controller.dart';
 import '../../models/questions1.dart';
 
 class HomeScreen extends StatelessWidget {
-  var user = FirebaseAuth.instance.currentUser;
-  Stream<QuerySnapshot> collectionStream =
+  HomeScreen({super.key});
+
+  final dynamic user = FirebaseAuth.instance.currentUser;
+  final Stream<QuerySnapshot> collectionStream =
       FirebaseFirestore.instance.collection(FirebaseAuth.instance.currentUser!.uid).snapshots();
 
   @override

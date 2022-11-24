@@ -8,7 +8,9 @@ import '../../widgets/general/input.dart';
 import '../../widgets/login/mainbutton.dart';
 
 class ForgotScreen extends StatelessWidget {
-  var emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
+  ForgotScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

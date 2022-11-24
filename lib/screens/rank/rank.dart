@@ -6,9 +6,9 @@ import '../../widgets/general/text.dart';
 import '../../widgets/rank/ranklist.dart';
 
 class RankScreen extends StatelessWidget {
-  dynamic index;
+  final dynamic index;
 
-  RankScreen({this.index});
+  const RankScreen({super.key, this.index});
 
   @override
   Widget build(BuildContext context) {

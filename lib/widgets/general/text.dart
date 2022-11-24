@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
-  dynamic text;
-  dynamic fontSize;
+  final dynamic text;
+  final dynamic fontSize;
 
-  CustomText({required this.text, required this.fontSize});
+  const CustomText({super.key, required this.text, required this.fontSize});
 
   @override
   Widget build(BuildContext context) {
