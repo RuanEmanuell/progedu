@@ -69,7 +69,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
             ]),
         body: Consumer<Controller>(builder: (context, value, child) {
           return value.loading
-              ? const Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 0, 255, 8)))
               : SingleChildScrollView(
                   child: Column(
                   children: [
@@ -86,7 +86,6 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                       width: screenWidth,
                       decoration: BoxDecoration(
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                               opacity: 0.3,
                               fit: BoxFit.cover,
@@ -118,7 +117,6 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                             width: screenWidth,
                             decoration: BoxDecoration(
                                 color: Colors.black,
-                                borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
                                     opacity: 0.3,
                                     fit: BoxFit.cover,
@@ -143,6 +141,35 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                             ),
                           )
                         : Container(),
+                    firebaseCompleteRef2.exists
+                        ? ColorFiltered(
+                            colorFilter: const ColorFilter.mode(
+                              Colors.grey,
+                              BlendMode.saturation,
+                            ),
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              height: screenHeight / 10,
+                              width: screenWidth,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  image: DecorationImage(
+                                      opacity: 0.3,
+                                      fit: BoxFit.cover,
+                                      image: AssetImage("assets/images/${widget.index}.png"))),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Center(
+                                  child: Text("Challenge 3 - Comming soon",
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.vt323(
+                                          fontSize: screenWidth / 10,
+                                          color: const Color.fromARGB(255, 0, 255, 8))),
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container()
                   ],
                 ));
         }));

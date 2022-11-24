@@ -92,7 +92,7 @@ class QuizScreen extends StatelessWidget {
                                     .doc("complete$index")
                                     .get();
                                 if (!firebaseCompleteRef.exists) {
-                                  firebaseRef.set({quizes[index]: "66"});
+                                  firebaseRef.set({quizes[index]: "50"});
                                   FirebaseFirestore.instance
                                       .collection(user!.uid)
                                       .doc(("complete$index").toString())
