@@ -5,7 +5,12 @@ class Controller extends ChangeNotifier {
 
   var selectedPageIndex = 0;
 
-  bool loading = true;
+  bool loading = false;
+
+  void startLoading() {
+    loading = true;
+    notifyListeners();
+  }
 
   void stopLoading() {
     loading = false;

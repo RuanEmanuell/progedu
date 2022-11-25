@@ -2,6 +2,7 @@ import 'package:alarme/models/questions1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../widgets/general/appbar.dart';
 import '../../widgets/general/languagebutton.dart';
 import '../../widgets/general/text.dart';
 import 'rank.dart';
@@ -15,6 +16,8 @@ class SelectScreen extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+        appBar:
+            PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: const MainAppBar()),
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,9 +42,8 @@ class SelectScreen extends StatelessWidget {
                         ));
                       },
                       child: Center(
-                        child: CustomText(text:quizes[index].toUpperCase(),
-                        fontSize:screenWidth/10)
-                      ));
+                          child: CustomText(
+                              text: quizes[index].toUpperCase(), fontSize: screenWidth / 10)));
                 })
           ],
         ));

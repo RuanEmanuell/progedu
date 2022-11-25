@@ -21,7 +21,8 @@ class RankScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        appBar: PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: CustomAppBar()),
+        appBar:
+            PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: const MainAppBar()),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

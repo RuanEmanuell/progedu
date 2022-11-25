@@ -9,7 +9,6 @@ import 'firebase_options.dart';
 import 'screens/games/home.dart';
 import 'screens/login/register.dart';
 import 'screens/rank/select.dart';
-import 'widgets/general/appbar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +29,6 @@ class MyApp extends StatelessWidget {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: CustomAppBar()),
         body: user == null
             ? RegisterScreen()
             : PageView(
@@ -39,32 +37,34 @@ class MyApp extends StatelessWidget {
                   Provider.of<Controller>(context, listen: false).selectedPageIndex = page;
                   Provider.of<Controller>(context, listen: false).changeBottomNavigation();
                 },
-                children: [HomeScreen(), SelectScreen()]),
-        bottomNavigationBar: Consumer<Controller>(
-          builder: (context, value, child) {
-            return BottomNavigationBar(
-              backgroundColor: Colors.black,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: "Home",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.emoji_events),
-                  label: "Rankings",
-                ),
-              ],
-              currentIndex: value.selectedPageIndex,
-              selectedItemColor: const Color.fromARGB(255, 0, 255, 8),
-              unselectedItemColor: const Color.fromARGB(188, 76, 175, 79),
-              onTap: (selected) {
-                controller.animateToPage(
-                    duration: const Duration(milliseconds: 500), curve: Curves.easeOut, selected);
-                value.selectedPageIndex = selected;
-                value.changeBottomNavigation();
-              },
-            );
-          },
-        ));
+                children: [HomeScreen(), const SelectScreen()]),
+        bottomNavigationBar: user == null
+            ? Container(height: 0)
+            : Consumer<Controller>(
+                builder: (context, value, child) {
+                  return BottomNavigationBar(
+                    backgroundColor: Colors.black,
+                    items: const [
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        label: "Home",
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.emoji_events),
+                        label: "Rankings",
+                      ),
+                    ],
+                    currentIndex: value.selectedPageIndex,
+                    selectedItemColor: const Color.fromARGB(255, 0, 255, 8),
+                    unselectedItemColor: const Color.fromARGB(188, 76, 175, 79),
+                    onTap: (selected) {
+                      controller.animateToPage(
+                          duration: const Duration(milliseconds: 500), curve: Curves.easeOut, selected);
+                      value.selectedPageIndex = selected;
+                      value.changeBottomNavigation();
+                    },
+                  );
+                },
+              ));
   }
 }

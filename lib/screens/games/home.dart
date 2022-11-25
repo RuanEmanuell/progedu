@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 import '../../models/questions1.dart';
+import '../../widgets/general/appbar.dart';
+import '../../widgets/general/loading.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -21,6 +23,8 @@ class HomeScreen extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+        appBar:
+            PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: const MainAppBar()),
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
         body: Consumer<Controller>(builder: (context, value, child) {
           return OrientationBuilder(builder: (context, orientation) {
@@ -88,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                                     }
 
                                     if (snapshot.connectionState == ConnectionState.waiting) {
-                                      return const CircularProgressIndicator();
+                                      return const LoadingWidget();
                                     }
 
                                     return Column(

@@ -7,7 +7,8 @@ class LanguageButton extends StatelessWidget {
   final dynamic onTap;
   final dynamic child;
 
-  const LanguageButton({super.key, required this.image, required this.text, required this.onTap, this.child});
+  const LanguageButton(
+      {super.key, required this.image, required this.text, required this.onTap, this.child});
 
   @override
   Widget build(BuildContext context) {

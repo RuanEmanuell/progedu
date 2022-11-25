@@ -26,7 +26,8 @@ class QuizScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        appBar: PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: CustomAppBar()),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(screenHeight / 15), child: const SecondaryAppBar()),
         body: Consumer<Controller>(builder: (context, value, child) {
           return SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),

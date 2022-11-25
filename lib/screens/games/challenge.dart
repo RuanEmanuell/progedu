@@ -9,12 +9,13 @@ import '../../controller/controller.dart';
 import '../../models/questions1.dart';
 import '../../widgets/general/appbar.dart';
 import '../../widgets/general/languagebutton.dart';
+import '../../widgets/general/loading.dart';
 import '../../widgets/general/text.dart';
 
 class ChallengeScreen extends StatefulWidget {
   final dynamic index;
 
-  ChallengeScreen({super.key, required this.index});
+  const ChallengeScreen({super.key, required this.index});
 
   @override
   State<ChallengeScreen> createState() => _ChallengeScreenState();
@@ -53,10 +54,11 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        appBar: PreferredSize(preferredSize: Size.fromHeight(screenHeight / 15), child: CustomAppBar()),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(screenHeight / 15), child: const SecondaryAppBar()),
         body: Consumer<Controller>(builder: (context, value, child) {
           return value.loading
-              ? const Center(child: CircularProgressIndicator(color: Color.fromARGB(255, 0, 255, 8)))
+              ? const LoadingWidget()
               : SingleChildScrollView(
                   child: Column(
                   children: [
