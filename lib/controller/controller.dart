@@ -1,12 +1,37 @@
 import 'package:flutter/material.dart';
 
 class Controller extends ChangeNotifier {
-  var controller;
+  String language = "english";
 
-  var selectedPageIndex = 0;
+  //Text input color variable
+  Color inputColor = const Color.fromARGB(255, 253, 228, 0);
 
+  //Loading and navigation variables
   bool loading = false;
+  int selectedPageIndex = 0;
 
+  //Games variables
+  int questionCount = 0;
+  int correctCount = 0;
+  bool correctTextController = false;
+  bool correct = false;
+  bool tappable = true;
+  dynamic controller;
+  String awnserText = "Your code will be here...";
+  Color correctColorController = Colors.red;
+
+  //Change input color
+  void inputTap() {
+    inputColor = const Color.fromARGB(255, 253, 228, 0);
+    notifyListeners();
+  }
+
+  void inputActive() {
+    inputColor = const Color.fromARGB(255, 0, 255, 8);
+    notifyListeners();
+  }
+
+  //Loading functions
   void startLoading() {
     loading = true;
     notifyListeners();
@@ -17,30 +42,13 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
+  //Bottom Navigation bar controller
   void changeBottomNavigation() {
     selectedPageIndex = selectedPageIndex;
     notifyListeners();
   }
 
-  var inputColor = const Color.fromARGB(255, 253, 228, 0);
-
-  var questionCount = 0;
-  var correctCount = 0;
-
-  bool correctTextController = false;
-  bool correct = false;
-
-  bool tappable = true;
-
-  var awnserText = "Your code will be here...";
-
-  var correctColorController = Colors.red;
-
-  changeAnwser() {
-    awnserText = controller.text;
-    notifyListeners();
-  }
-
+  //Quiz questions controllers
   void passQuestion() {
     Future.delayed(const Duration(seconds: 3), () {
       correct = false;
@@ -66,13 +74,9 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  void inputTap() {
-    inputColor = const Color.fromARGB(255, 253, 228, 0);
-    notifyListeners();
-  }
-
-  void inputActive() {
-    inputColor = const Color.fromARGB(255, 0, 255, 8);
+  //Pratical exercice anwser controller
+  void changeAnwser() {
+    awnserText = controller.text;
     notifyListeners();
   }
 }

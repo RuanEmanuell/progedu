@@ -10,6 +10,8 @@ import 'screens/games/home.dart';
 import 'screens/login/register.dart';
 import 'screens/rank/select.dart';
 
+import 'dart:io';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -20,14 +22,23 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  var user = FirebaseAuth.instance.currentUser;
-  var controller = PageController();
+  MyApp({super.key});
+
+  final user = FirebaseAuth.instance.currentUser;
+
+  final PageController controller = PageController();
+
   int index = 0;
 
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
+
+    if (Platform.localeName == "pt_BR" || Platform.localeName == "PT_PT") {
+      Provider.of<Controller>(context, listen: false).language = "portuguese";
+    }
+
     return Scaffold(
         body: user == null
             ? RegisterScreen()

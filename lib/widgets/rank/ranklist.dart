@@ -4,9 +4,9 @@ import "package:flutter/material.dart";
 import '../general/text.dart';
 
 class RankList extends StatelessWidget {
-  dynamic stream;
+  final dynamic stream;
 
-  RankList({required this.stream});
+  const RankList({super.key, required this.stream});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,17 @@ class RankList extends StatelessWidget {
           child: ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomText(text: data["name"], fontSize: screenWidth / 10),
-                  SizedBox(width: screenWidth / 20),
-                  CustomText(text: data["rank"], fontSize: screenWidth / 10),
-                ],
+              return Container(
+                margin: EdgeInsets.all(screenWidth / 20),
+                decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(50)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(text: data["name"], fontSize: screenWidth / 10),
+                    SizedBox(width: screenWidth / 20),
+                    CustomText(text: data["rank"], fontSize: screenWidth / 10),
+                  ],
+                ),
               );
             }).toList(),
           ),

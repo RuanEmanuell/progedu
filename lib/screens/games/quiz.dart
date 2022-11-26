@@ -43,26 +43,32 @@ class QuizScreen extends StatelessWidget {
                   Container(
                       margin: EdgeInsets.only(left: screenWidth / 30, right: screenWidth / 30),
                       child: CustomText(
-                          text: questions[quizes[index]][value.questionCount]["question"],
+                          text: questions[value.language][quizes[index]][value.questionCount]
+                              ["question"],
                           fontSize: screenWidth / 15)),
                   Container(
                     margin: EdgeInsets.only(
                         top: screenHeight /
-                            questions[quizes[index]][value.questionCount]["anwsers"].length /
+                            questions[value.language][quizes[index]][value.questionCount]["anwsers"]
+                                .length /
                             4),
                     height: screenHeight,
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: questions[quizes[index]][value.questionCount]["anwsers"].length,
+                      itemCount: questions[value.language][quizes[index]][value.questionCount]["anwsers"]
+                          .length,
                       itemBuilder: (context, listIndex) {
                         return InkWell(
                           onTap: () async {
                             if (value.tappable) {
-                              if (questions[quizes[index]][value.questionCount]["anwsers"][listIndex] ==
-                                  questions[quizes[index]][value.questionCount]["correct"]) {
+                              if (questions[value.language][quizes[index]][value.questionCount]
+                                      ["anwsers"][listIndex] ==
+                                  questions[value.language][quizes[index]][value.questionCount]
+                                      ["correct"]) {
                                 value.correctQuestion();
                               }
-                              if (value.questionCount < questions[quizes[index]].length - 1) {
+                              if (value.questionCount <
+                                  questions[value.language][quizes[index]].length - 1) {
                                 value.showCorrect();
                                 value.passQuestion();
                               } else {
@@ -101,21 +107,24 @@ class QuizScreen extends StatelessWidget {
                             margin: const EdgeInsets.all(10),
                             width: screenWidth,
                             decoration: BoxDecoration(
-                                color: questions[quizes[index]][value.questionCount]["anwsers"]
-                                                [listIndex] ==
-                                            questions[quizes[index]][value.questionCount]["correct"] &&
+                                color: questions[value.language][quizes[index]][value.questionCount]
+                                                ["anwsers"][listIndex] ==
+                                            questions[value.language][quizes[index]][value.questionCount]
+                                                ["correct"] &&
                                         value.correct
                                     ? Colors.green
                                     : Colors.black,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
                               child: Text(
-                                questions[quizes[index]][value.questionCount]["anwsers"][listIndex],
+                                questions[value.language][quizes[index]][value.questionCount]["anwsers"]
+                                    [listIndex],
                                 style: GoogleFonts.vt323(
                                   fontSize: screenWidth / 20,
-                                  color: questions[quizes[index]][value.questionCount]["anwsers"]
-                                                  [listIndex] ==
-                                              questions[quizes[index]][value.questionCount]["correct"] &&
+                                  color: questions[value.language][quizes[index]][value.questionCount]
+                                                  ["anwsers"][listIndex] ==
+                                              questions[value.language][quizes[index]]
+                                                  [value.questionCount]["correct"] &&
                                           value.correct
                                       ? Colors.white
                                       : const Color.fromARGB(255, 0, 255, 8),
@@ -134,7 +143,9 @@ class QuizScreen extends StatelessWidget {
                 child: AnimatedContainer(
                     duration: const Duration(seconds: 1),
                     height: screenHeight / 50,
-                    width: value.questionCount * screenWidth / questions[quizes[index]].length,
+                    width: value.questionCount *
+                        screenWidth /
+                        questions[value.language][quizes[index]].length,
                     color: Colors.green),
               ),
             ]),
