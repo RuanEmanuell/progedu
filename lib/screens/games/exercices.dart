@@ -49,14 +49,14 @@ class ExerciceScreen extends StatelessWidget {
                 margin: const EdgeInsets.all(20),
                 child: Center(
                     child: CustomText(
-                        text: questions2[quizes2[index]][value.questionCount]["question"],
+                        text: questions2[value.language][quizes2[index]][value.questionCount]["question"],
                         fontSize: screenWidth / 14)),
               ),
               Container(
                 margin: const EdgeInsets.all(20),
                 child: Center(
                     child: CustomText(
-                        text: "Hint: ${questions2[quizes2[index]][value.questionCount]["hint"]}",
+                        text: "Hint: ${questions2[value.language][quizes2[index]][value.questionCount]["hint"]}",
                         fontSize: screenWidth / 15)),
               ),
               SizedBox(height: screenHeight / 60),
@@ -79,7 +79,7 @@ class ExerciceScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
-                        : Text(questions2[quizes2[index]][value.questionCount]["codebox1"],
+                        : Text(questions2[value.language][quizes2[index]][value.questionCount]["codebox1"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15,
@@ -97,7 +97,7 @@ class ExerciceScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
-                        : Text(questions2[quizes2[index]][value.questionCount]["codebox2"],
+                        : Text(questions2[value.language][quizes2[index]][value.questionCount]["codebox2"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15,
@@ -105,7 +105,7 @@ class ExerciceScreen extends StatelessWidget {
                                     ? value.correctColorController
                                     : const Color.fromARGB(255, 166, 255, 0))),
                     value.correct
-                        ? Text(questions2[quizes2[index]][value.questionCount]["anwser"],
+                        ? Text(questions2[value.language][quizes2[index]][value.questionCount]["anwser"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
@@ -124,11 +124,11 @@ class ExerciceScreen extends StatelessWidget {
                 child: MainButton(
                     onPressed: () async {
                       if (value.tappable && anwserController.text.isNotEmpty) {
-                        if (questions2[quizes2[index]][value.questionCount]["anwser"] ==
+                        if (questions2[value.language][quizes2[index]][value.questionCount]["anwser"] ==
                             value.awnserText) {
                           value.correctQuestion();
                         }
-                        if (value.questionCount < questions2[quizes2[index]].length - 1) {
+                        if (value.questionCount < questions2[value.language][quizes2[index]].length - 1) {
                           value.showCorrect();
                           value.passQuestion();
                         } else {
