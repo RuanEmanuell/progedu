@@ -2,6 +2,7 @@ import 'package:alarme/models/questions2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../controller/controller.dart';
 import '../../main.dart';
+import '../../models/strings.dart';
 import '../../widgets/general/appbar.dart';
 import '../../widgets/general/input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,21 +43,25 @@ class ExerciceScreen extends StatelessWidget {
                 margin: const EdgeInsets.all(20),
                 child: Center(
                     child: CustomText(
-                        text: "${quizes2[index].toUpperCase()} - EXERCISE ${value.questionCount + 1}",
+                        text:
+                            "${quizes2[index]} - ${strings[value.language]["exercice"]} ${value.questionCount + 1}"
+                                .toUpperCase(),
                         fontSize: screenWidth / 11)),
               ),
               Container(
                 margin: const EdgeInsets.all(20),
                 child: Center(
                     child: CustomText(
-                        text: questions2[value.language][quizes2[index]][value.questionCount]["question"],
+                        text: questions2[value.language][quizes2[index]][value.questionCount]
+                            ["question"],
                         fontSize: screenWidth / 14)),
               ),
               Container(
                 margin: const EdgeInsets.all(20),
                 child: Center(
                     child: CustomText(
-                        text: "Hint: ${questions2[value.language][quizes2[index]][value.questionCount]["hint"]}",
+                        text:
+                            "${strings[value.language]["hint"]} ${questions2[value.language][quizes2[index]][value.questionCount]["hint"]}",
                         fontSize: screenWidth / 15)),
               ),
               SizedBox(height: screenHeight / 60),
@@ -69,17 +74,21 @@ class ExerciceScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     value.correct
-                        ? Text(value.correctTextController ? "You are right!" : "You are wrong!...",
+                        ? Text(
+                            value.correctTextController
+                                ? strings[value.language]["right"]
+                                : strings[value.language]["wrong"],
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 10, color: value.correctColorController))
                         : Container(),
                     SizedBox(height: value.correct ? screenHeight / 60 : 0),
                     value.correct
-                        ? Text("Your input:",
+                        ? Text(strings[value.language]["input"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
-                        : Text(questions2[value.language][quizes2[index]][value.questionCount]["codebox1"],
+                        : Text(
+                            questions2[value.language][quizes2[index]][value.questionCount]["codebox1"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15,
@@ -93,11 +102,12 @@ class ExerciceScreen extends StatelessWidget {
                             color: value.correct ? value.correctColorController : Colors.white)),
                     SizedBox(height: value.correct ? screenHeight / 30 : 0),
                     value.correct
-                        ? Text("The anwser is:",
+                        ? Text(strings[value.language]["rightanwser"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
-                        : Text(questions2[value.language][quizes2[index]][value.questionCount]["codebox2"],
+                        : Text(
+                            questions2[value.language][quizes2[index]][value.questionCount]["codebox2"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15,
@@ -117,7 +127,7 @@ class ExerciceScreen extends StatelessWidget {
               InputWidget(
                 controller: anwserController,
                 value: value,
-                hintText: "Type your anwser...",
+                hintText: strings[value.language]["youranwser"],
               ),
               SizedBox(
                 height: screenHeight / 7.5,
@@ -128,7 +138,8 @@ class ExerciceScreen extends StatelessWidget {
                             value.awnserText) {
                           value.correctQuestion();
                         }
-                        if (value.questionCount < questions2[value.language][quizes2[index]].length - 1) {
+                        if (value.questionCount <
+                            questions2[value.language][quizes2[index]].length - 1) {
                           value.showCorrect();
                           value.passQuestion();
                         } else {
@@ -164,7 +175,7 @@ class ExerciceScreen extends StatelessWidget {
                         anwserController.text = "";
                       }
                     },
-                    text: "Submit"),
+                    text: strings[value.language]["submit"]),
               )
             ],
           ));

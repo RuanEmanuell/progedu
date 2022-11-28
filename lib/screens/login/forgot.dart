@@ -3,6 +3,7 @@ import "package:firebase_auth/firebase_auth.dart";
 import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
+import '../../models/strings.dart';
 import '../../widgets/login/maintext.dart';
 import '../../widgets/general/input.dart';
 import '../../widgets/login/mainbutton.dart';
@@ -22,15 +23,16 @@ class ForgotScreen extends StatelessWidget {
             .sendPasswordResetEmail(email: emailController.text.trim())
             .then(((value) {
           Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.blue,
-              content: Text("Email sent, remember to check your spam box")));
+              content: Text(strings[Provider.of<Controller>(context, listen: false).language]["sent"])));
         }));
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
-            content:
-                Text(e.message == "Given String is empty or null" ? "Type your email" : e.message!)));
+            content: Text(e.message == "Given String is empty or null"
+                ? strings[Provider.of<Controller>(context, listen: false).language]["email"]
+                : e.message!)));
       }
     }
 
@@ -41,15 +43,18 @@ class ForgotScreen extends StatelessWidget {
             return Stack(children: [
               Center(
                 child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  MainText(text: "Send email to reset password"),
+                  MainText(text: strings[value.language]["send"]),
                   SizedBox(height: screenHeight / 60),
-                  InputWidget(controller: emailController, value: value, hintText: "Type your email..."),
+                  InputWidget(
+                      controller: emailController,
+                      value: value,
+                      hintText: strings[value.language]["email"]),
                   MainButton(
                       onPressed: () {
                         resetPasswordAction();
                       },
                       orientation: orientation,
-                      text: "Reset password")
+                      text: strings[value.language]["reset"])
                 ]),
               ),
               SafeArea(

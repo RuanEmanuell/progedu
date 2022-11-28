@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../controller/controller.dart';
 import '../../main.dart';
 import '../../models/questions1.dart';
+import '../../models/strings.dart';
 import '../../widgets/general/appbar.dart';
 import '../../widgets/general/text.dart';
 
@@ -38,7 +39,9 @@ class QuizScreen extends StatelessWidget {
                   Container(
                       margin: EdgeInsets.only(bottom: screenHeight / 15, top: screenHeight / 15),
                       child: CustomText(
-                          text: "${quizes[index]} - question ${value.questionCount + 1}".toUpperCase(),
+                          text:
+                              "${quizes[index]} - ${strings[value.language]["question"]}  ${value.questionCount + 1}"
+                                  .toUpperCase(),
                           fontSize: screenWidth / 10)),
                   Container(
                       margin: EdgeInsets.only(left: screenWidth / 30, right: screenWidth / 30),

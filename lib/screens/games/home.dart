@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 import '../../models/questions1.dart';
+import '../../models/strings.dart';
 import '../../widgets/general/appbar.dart';
 import '../../widgets/general/loading.dart';
 
@@ -37,14 +38,14 @@ class HomeScreen extends StatelessWidget {
                       right: screenWidth / 20,
                       top: screenHeight / 30,
                       bottom: screenHeight / 60),
-                  child: Text("Hello, ${user!.displayName.toString()}!",
+                  child: Text("${strings[value.language]["hello"]}, ${user!.displayName.toString()}!",
                       style: GoogleFonts.vt323(
                           fontSize: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
                 ),
                 Container(
                   margin: EdgeInsets.only(
                       left: screenWidth / 20, right: screenWidth / 20, bottom: screenHeight / 30),
-                  child: Text("What challenge you wanna play?",
+                  child: Text(strings[value.language]["challenge"],
                       style: GoogleFonts.vt323(
                           fontSize: screenWidth / 14, color: const Color.fromARGB(255, 0, 255, 8))),
                 ),
@@ -88,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                                   stream: collectionStream,
                                   builder: (context, snapshot) {
                                     if (snapshot.hasError) {
-                                      return const Text('Something went wrong');
+                                      return Text(strings[value.language]["error"]);
                                     }
 
                                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -107,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                                             height: screenHeight / 100),
                                         Center(
                                           child: Text(
-                                              "${snapshot.data!.docs[index][quizes[index]]}% concluded",
+                                              "${snapshot.data!.docs[index][quizes[index]]}% ${strings[value.language]["concluded"]}",
                                               style: GoogleFonts.vt323(
                                                   fontSize: screenWidth / 20,
                                                   color: const Color.fromARGB(255, 0, 255, 8))),

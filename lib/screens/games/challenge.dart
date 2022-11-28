@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 import '../../models/questions1.dart';
+import '../../models/strings.dart';
 import '../../widgets/general/appbar.dart';
 import '../../widgets/general/languagebutton.dart';
 import '../../widgets/general/loading.dart';
@@ -69,7 +70,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                             text: quizes[widget.index].toUpperCase(), fontSize: screenWidth / 7.5)),
                     LanguageButton(
                         image: widget.index,
-                        text: "Challenge 1 - Quiz",
+                        text: strings[value.language]["c1"],
                         onTap: () {
                           value.questionCount = 0;
                           value.correctCount = 0;
@@ -83,7 +84,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                     firebaseCompleteRef.exists
                         ? LanguageButton(
                             image: widget.index,
-                            text: "Challenge 2- Pratical Exercices",
+                            text: strings[value.language]["c2"],
                             onTap: () {
                               value.questionCount = 0;
                               value.correctCount = 0;
@@ -101,7 +102,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                               BlendMode.saturation,
                             ),
                             child: LanguageButton(
-                                image: widget.index, text: "Challenge 3 - Coming soon", onTap: () {}),
+                                image: widget.index, text: strings[value.language]["c3"], onTap: () {}),
                           )
                         : Container()
                   ],
