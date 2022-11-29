@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
 import '../../main.dart';
+import '../../models/strings.dart';
 import '../../widgets/general/loading.dart';
 import '../../widgets/login/maintext.dart';
 import '../../widgets/general/input.dart';
@@ -41,8 +42,9 @@ class NameScreen extends StatelessWidget {
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
-            content:
-                Text(e.message == "Given String is empty or null" ? "Type your nickname" : e.message!)));
+            content: Text(e.message == "Given String is empty or null"
+                ? strings[Provider.of<Controller>(context, listen: false).language]["emptyname"]
+                : e.message!)));
         Provider.of<Controller>(context, listen: false).stopLoading();
       }
     }
@@ -52,22 +54,21 @@ class NameScreen extends StatelessWidget {
         body: Consumer<Controller>(builder: (context, value, child) {
           return value.loading
               ? const LoadingWidget()
-              : OrientationBuilder(builder: (context, orientation) {
-                  return Center(
-                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      MainText(text: "What's your nickname?"),
-                      SizedBox(height: screenHeight / 60),
-                      InputWidget(
-                          controller: nameController, value: value, hintText: "Type your nickname..."),
-                      MainButton(
-                          onPressed: () {
-                            nameAction();
-                          },
-                          orientation: orientation,
-                          text: "Choose nickname")
-                    ]),
-                  );
-                });
+              : Center(
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    MainText(text: strings[value.language]["name"]),
+                    SizedBox(height: screenHeight / 60),
+                    InputWidget(
+                        controller: nameController,
+                        value: value,
+                        hintText: strings[value.language]["emptyname"]),
+                    MainButton(
+                        onPressed: () {
+                          nameAction();
+                        },
+                        text: strings[value.language]["choosename"])
+                  ]),
+                );
         }));
   }
 }

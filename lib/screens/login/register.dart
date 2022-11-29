@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
+import '../../models/strings.dart';
 import '../../widgets/general/loading.dart';
 import 'login.dart';
 import 'name.dart';
@@ -41,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
             content: Text(e.message == "Given String is empty or null"
-                ? "One or more fields are empty"
+                ? strings[Provider.of<Controller>(context, listen: false).language]["emptyboth"]
                 : e.message!)));
         Provider.of<Controller>(context, listen: false).stopLoading();
       }
@@ -52,46 +53,48 @@ class RegisterScreen extends StatelessWidget {
         body: Consumer<Controller>(builder: (context, value, child) {
           return value.loading
               ? const LoadingWidget()
-              : OrientationBuilder(builder: (context, orientation) {
-                  return SingleChildScrollView(
-                      child: Column(children: [
-                    LogoWidget(orientation: orientation),
-                    MainText(text: "Learn to code now!"),
-                    SizedBox(height: screenHeight / 60),
-                    InputWidget(controller: emailController, hintText: "Type an email...", value: value),
-                    InputWidget(
-                        controller: passwordController, hintText: "Type a password...", value: value),
-                    MainButton(
-                        onPressed: () {
-                          registerAction();
+              : SingleChildScrollView(
+                  child: Column(children: [
+                  LogoWidget(),
+                  MainText(text: strings[value.language]["learncode"]),
+                  SizedBox(height: screenHeight / 60),
+                  InputWidget(
+                      controller: emailController,
+                      hintText: strings[value.language]["email"],
+                      value: value),
+                  InputWidget(
+                      controller: passwordController,
+                      hintText: strings[value.language]["password"],
+                      value: value),
+                  MainButton(
+                      onPressed: () {
+                        registerAction();
+                      },
+                      text: strings[value.language]["register"]),
+                  Container(
+                    margin: EdgeInsets.only(top: screenHeight / 40, bottom: screenHeight / 40),
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return LoginScreen();
+                            },
+                          ));
                         },
-                        orientation: orientation,
-                        text: "Register"),
-                    Container(
-                      margin: EdgeInsets.only(top: screenHeight / 40, bottom: screenHeight / 40),
-                      child: InkWell(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return LoginScreen();
-                              },
-                            ));
-                          },
-                          child: RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                text: "Already has an account?",
-                                style: GoogleFonts.vt323(
-                                    fontSize: screenWidth / 20,
-                                    color: const Color.fromARGB(255, 0, 255, 8))),
-                            TextSpan(
-                                text: " Login",
-                                style:
-                                    GoogleFonts.vt323(fontSize: screenWidth / 20, color: Colors.yellow)),
-                          ]))),
-                    )
-                  ]));
-                });
+                        child: RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: strings[value.language]["hasaccount"],
+                              style: GoogleFonts.vt323(
+                                  fontSize: screenWidth / 20,
+                                  color: const Color.fromARGB(255, 0, 255, 8))),
+                          TextSpan(
+                              text: strings[value.language]["login"],
+                              style:
+                                  GoogleFonts.vt323(fontSize: screenWidth / 20, color: Colors.yellow)),
+                        ]))),
+                  )
+                ]));
         }));
   }
 }

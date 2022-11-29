@@ -1,12 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
 
+import '../../controller/controller.dart';
+import '../../models/strings.dart';
 import '../general/text.dart';
 
 class RankList extends StatelessWidget {
   final dynamic stream;
 
-  const RankList({super.key, required this.stream});
+  RankList({super.key, required this.stream});
+
+  final dynamic user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class RankList extends StatelessWidget {
       stream: stream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return const Text('Something went wrong');
+          return Text(strings[Provider.of<Controller>(context, listen: false).language]["error"]);
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -30,7 +36,9 @@ class RankList extends StatelessWidget {
               Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
               return Container(
                 margin: EdgeInsets.all(screenWidth / 20),
-                decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(50)),
+                decoration: BoxDecoration(
+                    color: data["name"] == user.displayName ? Colors.grey : Colors.black,
+                    borderRadius: BorderRadius.circular(50)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

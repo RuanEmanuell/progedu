@@ -1,7 +1,10 @@
 import 'package:alarme/models/questions1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../controller/controller.dart';
+import '../../models/strings.dart';
 import '../../widgets/general/appbar.dart';
 import '../../widgets/general/languagebutton.dart';
 import '../../widgets/general/text.dart';
@@ -22,7 +25,7 @@ class SelectScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("SELECT A RANKING",
+            Text(strings[Provider.of<Controller>(context, listen: false).language]["selectranking"],
                 textAlign: TextAlign.center,
                 style: GoogleFonts.vt323(
                     fontSize: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),

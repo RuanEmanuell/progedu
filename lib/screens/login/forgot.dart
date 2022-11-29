@@ -39,34 +39,31 @@ class ForgotScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
         body: Consumer<Controller>(builder: (context, value, child) {
-          return OrientationBuilder(builder: (context, orientation) {
-            return Stack(children: [
-              Center(
-                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  MainText(text: strings[value.language]["send"]),
-                  SizedBox(height: screenHeight / 60),
-                  InputWidget(
-                      controller: emailController,
-                      value: value,
-                      hintText: strings[value.language]["email"]),
-                  MainButton(
-                      onPressed: () {
-                        resetPasswordAction();
-                      },
-                      orientation: orientation,
-                      text: strings[value.language]["reset"])
-                ]),
-              ),
-              SafeArea(
-                child: IconButton(
+          return Stack(children: [
+            Center(
+              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                MainText(text: strings[value.language]["send"]),
+                SizedBox(height: screenHeight / 60),
+                InputWidget(
+                    controller: emailController,
+                    value: value,
+                    hintText: strings[value.language]["email"]),
+                MainButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      resetPasswordAction();
                     },
-                    icon: Icon(Icons.arrow_back,
-                        size: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
-              )
-            ]);
-          });
+                    text: strings[value.language]["reset"])
+              ]),
+            ),
+            SafeArea(
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back,
+                      size: screenWidth / 10, color: const Color.fromARGB(255, 0, 255, 8))),
+            )
+          ]);
         }));
   }
 }
