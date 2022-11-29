@@ -81,6 +81,6 @@ Map<String, dynamic> strings = {
     "exit": "Tem certeza que quer sair?",
     "login": " Entrar",
     "logout": "Você será desconectado e voltará ao menu principal.",
-    "exitconfirm": "Sair"
+    "exitconfirm": "Sair",
   }
 };

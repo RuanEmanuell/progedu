@@ -675,7 +675,7 @@ Map<String, dynamic> questions = {
           "Mudar as propriedades de largura e altura",
           "Mudar as propriedades de tamanho e proporção"
         ],
-        "correct": "Changing width and height properties"
+        "correct": "Mudar as propriedades de largura e altura"
       },
       {
         "question": "Quando CSS foi lançado?",

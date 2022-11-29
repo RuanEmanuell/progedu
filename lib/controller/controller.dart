@@ -17,7 +17,7 @@ class Controller extends ChangeNotifier {
   bool correct = false;
   bool tappable = true;
   dynamic controller;
-  String awnserText = "Your code will be here...";
+  String awnserText = "";
   Color correctColorController = Colors.red;
 
   //Change input color
@@ -56,7 +56,8 @@ class Controller extends ChangeNotifier {
       tappable = true;
       correctColorController = Colors.red;
       correctTextController = false;
-      awnserText = "Your code will be here...";
+      awnserText = "";
+      controller.text = "";
       notifyListeners();
     });
   }
