@@ -89,19 +89,21 @@ class QuizScreen extends StatelessWidget {
                                 }
                                 value.tappable = true;
                                 FirebaseFirestore.instance
-                                    .collection("quizrankings")
+                                    .collection("${index}quizrankings")
                                     .doc(("${value.correctCount.toString()} ${user!.displayName}"))
                                     .set({
                                   "name": user!.displayName,
+                                  "id": user!.uid,
                                   "rank": value.correctCount.toString()
                                 });
                                 Future.delayed(const Duration(seconds: 3), () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
-                                      return MyApp();
+                                      return const MyApp();
                                     },
                                   ));
                                 });
+                                value.showInterAd();
                               }
                             }
                           },

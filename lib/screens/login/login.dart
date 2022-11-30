@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
             .then(((value) {
           Navigator.push(context, MaterialPageRoute(
             builder: (context) {
-              return MyApp();
+              return const MyApp();
             },
           ));
           Provider.of<Controller>(context, listen: false).stopLoading();

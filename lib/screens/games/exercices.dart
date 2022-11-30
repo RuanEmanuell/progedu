@@ -56,13 +56,20 @@ class ExerciceScreen extends StatelessWidget {
                             ["question"],
                         fontSize: screenWidth / 14)),
               ),
-              Container(
-                margin: const EdgeInsets.all(20),
-                child: Center(
-                    child: CustomText(
-                        text:
-                            "${strings[value.language]["hint"]} ${questions2[value.language][quizes2[index]][value.questionCount]["hint"]}",
-                        fontSize: screenWidth / 15)),
+              InkWell(
+                onTap: () {
+                  value.showRewardedAd();
+                },
+                child: Container(
+                  margin: const EdgeInsets.all(20),
+                  child: Center(
+                      child: CustomText(
+                          text: value.reward
+                              ? strings[value.language]["hint"] +
+                                  questions2[value.language][quizes2[index]][value.questionCount]["hint"]
+                              : strings[value.language]["hint"] + strings[value.language]["ad"],
+                          fontSize: screenWidth / 15)),
+                ),
               ),
               SizedBox(height: screenHeight / 60),
               Container(
@@ -95,7 +102,7 @@ class ExerciceScreen extends StatelessWidget {
                                 color: value.correct
                                     ? value.correctColorController
                                     : const Color.fromARGB(255, 166, 255, 0))),
-                    Text(value.awnserText,
+                    Text(value.anwserText,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.vt323(
                             fontSize: screenWidth / 15,
@@ -135,7 +142,7 @@ class ExerciceScreen extends StatelessWidget {
                     onPressed: () async {
                       if (value.tappable && anwserController.text.isNotEmpty) {
                         if (questions2[value.language][quizes2[index]][value.questionCount]["anwser"] ==
-                            value.awnserText) {
+                            value.anwserText) {
                           value.correctQuestion();
                         }
                         if (value.questionCount <
@@ -160,19 +167,25 @@ class ExerciceScreen extends StatelessWidget {
                                 .set({"complete": "completed"});
                           }
                           FirebaseFirestore.instance
-                              .collection("quizrankings")
+                              .collection("${index}exercicesrankings")
                               .doc(("${value.correctCount.toString()} ${user!.displayName}"))
-                              .set({"name": user!.displayName, "rank": value.correctCount.toString()});
+                              .set({
+                            "name": user!.displayName,
+                            "id": user!.uid,
+                            "rank": value.correctCount.toString()
+                          });
+                          value.resetAnwser();
                           value.tappable = true;
                           Future.delayed(const Duration(seconds: 3), () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return MyApp();
+                                return const MyApp();
                               },
                             ));
                           });
+                          value.reward = false;
+                          value.showInterAd();
                         }
-                        anwserController.text = "";
                       }
                     },
                     text: strings[value.language]["submit"]),

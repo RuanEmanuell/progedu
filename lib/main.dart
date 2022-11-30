@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import "package:provider/provider.dart";
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/services.dart";
+import "package:google_mobile_ads/google_mobile_ads.dart";
 
 import 'controller/controller.dart';
 import 'firebase_options.dart';
@@ -18,21 +19,35 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  await MobileAds.instance.initialize();
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => Controller())],
-      child: MaterialApp(home: MyApp())));
+      child: const MaterialApp(home: MyApp())));
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final user = FirebaseAuth.instance.currentUser;
 
   final PageController controller = PageController();
 
   int index = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<Controller>(context, listen: false).createInterAd();
+    Provider.of<Controller>(context, listen: false).createRewardAd();
+  }
 
   @override
   Widget build(BuildContext context) {

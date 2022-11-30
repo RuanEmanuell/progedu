@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../services/ad_mob_service.dart';
 
 class Controller extends ChangeNotifier {
   String language = "english";
+
+  InterstitialAd? interstitialAd;
+  RewardedAd? rewardedAd;
+
+  bool reward = false;
 
   //Text input color variable
   Color inputColor = const Color.fromARGB(255, 253, 228, 0);
@@ -17,7 +25,7 @@ class Controller extends ChangeNotifier {
   bool correct = false;
   bool tappable = true;
   dynamic controller;
-  String awnserText = "";
+  String anwserText = "";
   Color correctColorController = Colors.red;
 
   //Change input color
@@ -56,8 +64,7 @@ class Controller extends ChangeNotifier {
       tappable = true;
       correctColorController = Colors.red;
       correctTextController = false;
-      awnserText = "";
-      controller.text = "";
+      resetAnwser();
       notifyListeners();
     });
   }
@@ -77,7 +84,79 @@ class Controller extends ChangeNotifier {
 
   //Pratical exercice anwser controller
   void changeAnwser() {
-    awnserText = controller.text;
+    anwserText = controller.text;
+    notifyListeners();
+  }
+
+  void resetAnwser() {
+    anwserText = "";
+    controller.text = "";
+    notifyListeners();
+  }
+
+  void createInterAd() {
+    InterstitialAd.load(
+        adUnitId: AdMobService.interstitialadUnitId!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: ((ad) {
+            interstitialAd = ad;
+          }),
+          onAdFailedToLoad: (error) {
+            interstitialAd = null;
+          },
+        ));
+  }
+
+  void createRewardAd() {
+    RewardedAd.load(
+        adUnitId: AdMobService.rewardedadUnitId!,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: ((ad) {
+            rewardedAd = ad;
+          }),
+          onAdFailedToLoad: (error) {
+            rewardedAd = null;
+          },
+        ));
+  }
+
+  void showInterAd() {
+    if (interstitialAd != null) {
+      interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          createInterAd();
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          createInterAd();
+        },
+      );
+      interstitialAd!.show();
+      interstitialAd = null;
+    }
+  }
+
+  void showRewardedAd() {
+    if (rewardedAd != null) {
+      rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+        onAdDismissedFullScreenContent: (ad) {
+          ad.dispose();
+          createInterAd();
+        },
+        onAdFailedToShowFullScreenContent: (ad, error) {
+          ad.dispose();
+          createInterAd();
+        },
+      );
+      rewardedAd!.show(
+        onUserEarnedReward: (ad, rewardSet) {},
+      );
+      rewardedAd = null;
+    }
+    reward = true;
     notifyListeners();
   }
 }
