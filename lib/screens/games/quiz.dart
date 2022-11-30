@@ -90,7 +90,8 @@ class QuizScreen extends StatelessWidget {
                                 value.tappable = true;
                                 FirebaseFirestore.instance
                                     .collection("${index}quizrankings")
-                                    .doc(("${value.correctCount.toString()} ${user!.displayName}"))
+                                    .doc(
+                                        ("${(value.correctCount - 20).toString()} ${user!.displayName}"))
                                     .set({
                                   "name": user!.displayName,
                                   "id": user!.uid,

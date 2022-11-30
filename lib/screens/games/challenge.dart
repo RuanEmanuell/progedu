@@ -1,5 +1,5 @@
-import 'package:alarme/screens/games/exercices.dart';
-import 'package:alarme/screens/games/quiz.dart';
+import '../../screens/games/exercices.dart';
+import '../../screens/games/quiz.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
@@ -72,8 +72,7 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
                         image: widget.index,
                         text: strings[value.language]["c1"],
                         onTap: () {
-                          value.questionCount = 0;
-                          value.correctCount = 0;
+                          value.resetQuestions();
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
                               return QuizScreen(index: widget.index);

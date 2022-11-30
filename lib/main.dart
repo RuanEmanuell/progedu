@@ -47,6 +47,9 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     Provider.of<Controller>(context, listen: false).createInterAd();
     Provider.of<Controller>(context, listen: false).createRewardAd();
+    if (Platform.localeName == "pt_BR" || Platform.localeName == "PT_PT") {
+      Provider.of<Controller>(context, listen: false).language = "portuguese";
+    }
   }
 
   @override
@@ -54,13 +57,9 @@ class _MyAppState extends State<MyApp> {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
 
-    if (Platform.localeName == "pt_BR" || Platform.localeName == "PT_PT") {
-      Provider.of<Controller>(context, listen: false).language = "portuguese";
-    }
-
     return Scaffold(
         body: user == null
-            ? RegisterScreen()
+            ? const RegisterScreen()
             : PageView(
                 controller: controller,
                 onPageChanged: (page) {

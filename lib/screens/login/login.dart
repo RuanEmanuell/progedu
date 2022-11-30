@@ -1,5 +1,5 @@
-import 'package:alarme/controller/controller.dart';
-import 'package:alarme/widgets/login/mainbutton.dart';
+import '../../controller/controller.dart';
+import '../../widgets/login/mainbutton.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import 'package:google_fonts/google_fonts.dart';

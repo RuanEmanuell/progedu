@@ -43,7 +43,7 @@ class MainAppBar extends StatelessWidget {
                                   (value) {
                                     Navigator.push(context, MaterialPageRoute(
                                       builder: (context) {
-                                        return RegisterScreen();
+                                        return const RegisterScreen();
                                       },
                                     ));
                                     Provider.of<Controller>(context, listen: false).stopLoading();

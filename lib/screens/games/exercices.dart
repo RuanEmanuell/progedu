@@ -1,4 +1,4 @@
-import 'package:alarme/models/questions2.dart';
+import '../../models/questions2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../controller/controller.dart';
 import '../../main.dart';
@@ -13,11 +13,16 @@ import 'package:provider/provider.dart';
 import '../../widgets/general/text.dart';
 import '../../widgets/login/mainbutton.dart';
 
-class ExerciceScreen extends StatelessWidget {
+class ExerciceScreen extends StatefulWidget {
   final dynamic index;
 
-  ExerciceScreen({super.key, required this.index});
+  const ExerciceScreen({super.key, required this.index});
 
+  @override
+  State<ExerciceScreen> createState() => _ExerciceScreenState();
+}
+
+class _ExerciceScreenState extends State<ExerciceScreen> {
   final TextEditingController anwserController = TextEditingController();
 
   final user = FirebaseAuth.instance.currentUser;
@@ -29,7 +34,7 @@ class ExerciceScreen extends StatelessWidget {
 
     Provider.of<Controller>(context, listen: false).controller = anwserController;
 
-    var firebaseRef = FirebaseFirestore.instance.collection(user!.uid).doc(index.toString());
+    var firebaseRef = FirebaseFirestore.instance.collection(user!.uid).doc(widget.index.toString());
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 56, 56, 56),
@@ -44,7 +49,7 @@ class ExerciceScreen extends StatelessWidget {
                 child: Center(
                     child: CustomText(
                         text:
-                            "${quizes2[index]} - ${strings[value.language]["exercice"]} ${value.questionCount + 1}"
+                            "${quizes2[widget.index]} - ${strings[value.language]["exercice"]} ${value.questionCount + 1}"
                                 .toUpperCase(),
                         fontSize: screenWidth / 11)),
               ),
@@ -52,7 +57,7 @@ class ExerciceScreen extends StatelessWidget {
                 margin: const EdgeInsets.all(20),
                 child: Center(
                     child: CustomText(
-                        text: questions2[value.language][quizes2[index]][value.questionCount]
+                        text: questions2[value.language][quizes2[widget.index]][value.questionCount]
                             ["question"],
                         fontSize: screenWidth / 14)),
               ),
@@ -66,7 +71,8 @@ class ExerciceScreen extends StatelessWidget {
                       child: CustomText(
                           text: value.reward
                               ? strings[value.language]["hint"] +
-                                  questions2[value.language][quizes2[index]][value.questionCount]["hint"]
+                                  questions2[value.language][quizes2[widget.index]][value.questionCount]
+                                      ["hint"]
                               : strings[value.language]["hint"] + strings[value.language]["ad"],
                           fontSize: screenWidth / 15)),
                 ),
@@ -95,14 +101,15 @@ class ExerciceScreen extends StatelessWidget {
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
                         : Text(
-                            questions2[value.language][quizes2[index]][value.questionCount]["codebox1"],
+                            questions2[value.language][quizes2[widget.index]][value.questionCount]
+                                ["codebox1"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15,
                                 color: value.correct
                                     ? value.correctColorController
                                     : const Color.fromARGB(255, 166, 255, 0))),
-                    Text(value.anwserText,
+                    Text(anwserController.text,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.vt323(
                             fontSize: screenWidth / 15,
@@ -114,7 +121,8 @@ class ExerciceScreen extends StatelessWidget {
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
                         : Text(
-                            questions2[value.language][quizes2[index]][value.questionCount]["codebox2"],
+                            questions2[value.language][quizes2[widget.index]][value.questionCount]
+                                ["codebox2"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15,
@@ -122,7 +130,9 @@ class ExerciceScreen extends StatelessWidget {
                                     ? value.correctColorController
                                     : const Color.fromARGB(255, 166, 255, 0))),
                     value.correct
-                        ? Text(questions2[value.language][quizes2[index]][value.questionCount]["anwser"],
+                        ? Text(
+                            questions2[value.language][quizes2[widget.index]][value.questionCount]
+                                ["anwser"],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.vt323(
                                 fontSize: screenWidth / 15, color: value.correctColorController))
@@ -141,41 +151,45 @@ class ExerciceScreen extends StatelessWidget {
                 child: MainButton(
                     onPressed: () async {
                       if (value.tappable && anwserController.text.isNotEmpty) {
-                        if (questions2[value.language][quizes2[index]][value.questionCount]["anwser"] ==
-                            value.anwserText) {
+                        if (questions2[value.language][quizes2[widget.index]][value.questionCount]
+                                ["anwser"] ==
+                            anwserController.text) {
                           value.correctQuestion();
                         }
                         if (value.questionCount <
-                            questions2[value.language][quizes2[index]].length - 1) {
+                            questions2[value.language][quizes2[widget.index]].length - 1) {
                           value.showCorrect();
                           value.passQuestion();
+                          value.resetAnwser();
                         } else {
                           value.showCorrect();
+                          value.resetAnwser();
+                          value.resetReward();
+                          value.isTappable();
+                          value.showInterAd();
                           var firebaseCompleteRef = await FirebaseFirestore.instance
                               .collection(user!.uid)
-                              .doc("complete$index")
+                              .doc("complete${widget.index}")
                               .get();
                           var firebaseCompleteRef2 = await FirebaseFirestore.instance
                               .collection(user!.uid)
-                              .doc("complete$index 2")
+                              .doc("complete${widget.index} 2")
                               .get();
                           if (firebaseCompleteRef.exists && !firebaseCompleteRef2.exists) {
-                            firebaseRef.set({quizes2[index]: "100"});
+                            firebaseRef.set({quizes2[widget.index]: "100"});
                             FirebaseFirestore.instance
                                 .collection(user!.uid)
-                                .doc("complete$index 2")
+                                .doc("complete${widget.index} 2")
                                 .set({"complete": "completed"});
                           }
                           FirebaseFirestore.instance
-                              .collection("${index}exercicesrankings")
-                              .doc(("${value.correctCount.toString()} ${user!.displayName}"))
+                              .collection("${widget.index}exercicesrankings")
+                              .doc(("${(value.correctCount - 20).toString()} ${user!.displayName}"))
                               .set({
                             "name": user!.displayName,
                             "id": user!.uid,
                             "rank": value.correctCount.toString()
                           });
-                          value.resetAnwser();
-                          value.tappable = true;
                           Future.delayed(const Duration(seconds: 3), () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
@@ -183,8 +197,6 @@ class ExerciceScreen extends StatelessWidget {
                               },
                             ));
                           });
-                          value.reward = false;
-                          value.showInterAd();
                         }
                       }
                     },

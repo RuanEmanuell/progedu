@@ -37,7 +37,7 @@ class RankList extends StatelessWidget {
               return Container(
                 margin: EdgeInsets.all(screenWidth / 20),
                 decoration: BoxDecoration(
-                    color: data["uid"] == user.uid ? Colors.grey : Colors.black,
+                    color: data["id"] == user!.uid ? Colors.grey : Colors.black,
                     borderRadius: BorderRadius.circular(50)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

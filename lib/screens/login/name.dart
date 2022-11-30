@@ -1,4 +1,4 @@
-import 'package:alarme/models/questions1.dart';
+import '../../models/questions1.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
@@ -58,7 +58,7 @@ class NameScreen extends StatelessWidget {
                   child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                     MainText(text: strings[value.language]["name"]),
                     SizedBox(height: screenHeight / 60),
-                    InputWidget(
+                    NameInputWidget(
                         controller: nameController,
                         value: value,
                         hintText: strings[value.language]["emptyname"]),

@@ -1,4 +1,4 @@
-import 'package:alarme/widgets/general/text.dart';
+import '../../widgets/general/text.dart';
 import "package:flutter/material.dart";
 
 class LanguageButton extends StatelessWidget {

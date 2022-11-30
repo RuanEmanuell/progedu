@@ -25,7 +25,6 @@ class Controller extends ChangeNotifier {
   bool correct = false;
   bool tappable = true;
   dynamic controller;
-  String anwserText = "";
   Color correctColorController = Colors.red;
 
   //Change input color
@@ -61,12 +60,16 @@ class Controller extends ChangeNotifier {
     Future.delayed(const Duration(seconds: 3), () {
       correct = false;
       questionCount++;
-      tappable = true;
       correctColorController = Colors.red;
       correctTextController = false;
-      resetAnwser();
+      isTappable();
       notifyListeners();
     });
+  }
+
+  void isTappable() {
+    tappable = true;
+    notifyListeners();
   }
 
   void showCorrect() {
@@ -82,15 +85,16 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  //Pratical exercice anwser controller
-  void changeAnwser() {
-    anwserText = controller.text;
-    notifyListeners();
+  void resetAnwser() {
+    Future.delayed(const Duration(seconds: 3), () {
+      controller.text = "";
+      notifyListeners();
+    });
   }
 
-  void resetAnwser() {
-    anwserText = "";
-    controller.text = "";
+  void resetQuestions() {
+    questionCount = 0;
+    correctCount = 0;
     notifyListeners();
   }
 
@@ -157,6 +161,11 @@ class Controller extends ChangeNotifier {
       rewardedAd = null;
     }
     reward = true;
+    notifyListeners();
+  }
+
+  void resetReward() {
+    reward = false;
     notifyListeners();
   }
 }
