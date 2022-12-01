@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import "package:provider/provider.dart";
@@ -22,6 +23,32 @@ void main() async {
   await MobileAds.instance.initialize();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  await AwesomeNotifications().initialize(null, [
+    NotificationChannel(
+        channelKey: 'key1',
+        channelName: 'Notification',
+        channelDescription: "ProgEdu notification",
+        defaultColor: const Color.fromARGB(255, 56, 56, 56),
+        ledColor: const Color.fromARGB(255, 0, 255, 8),
+        playSound: true,
+        enableLights: false,
+        enableVibration: true)
+  ]);
+
+  String localTimeZone = await AwesomeNotifications().getLocalTimeZoneIdentifier();
+
+  await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+          id: 0,
+          channelKey: 'key1',
+          title: Platform.localeName == "pt_BR" || Platform.localeName == "PT_PT"
+              ? "Continue praticando programação!"
+              : "Let's keep praticing coding!",
+          body: Platform.localeName == "pt_BR" || Platform.localeName == "PT_PT"
+              ? "Consistência vai te tornar melhor a cada dia!"
+              : "Consistency will make you better everyday!"),
+      schedule: NotificationInterval(interval: 9000, timeZone: localTimeZone, repeats: true));
 
   runApp(MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => Controller())],
