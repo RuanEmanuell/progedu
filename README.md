@@ -2,7 +2,7 @@
 
 ## /ProgEdu
 
-This project is a collection of quizes and tests in various programming languages such as HTML, CSS, JavaScript, Phyton and Flutter/Dart. I learned a lot from it, for example, manage Firebase Firestore collections, that are used to save user's progress and to display the rankings. I also learned a lot about Firebase Authentication, it was also my first ad supported app, so I Learned a lot about puting Ads into the apps (via Google AdMob) too, Google Play app publishment and a lot of things more. It was also very good to help me develop my Flutter skills a little more, as there are a variety of screens used in this app and two "game modes": quiz and pratical exercices. <a href="https://play.google.com/store/apps/details?id=com.ruanemanuell.progedu">It is available in Google Play</a>.
+This project is a collection of quizes and tests in various programming languages such as HTML, CSS, JavaScript, Phyton and Flutter/Dart. I learned a lot from it, for example, manage Firebase Firestore collections, that are used to save user's progress and to display the rankings. I also learned a lot about Firebase Authentication, it was also my first ad supported app, so I Learned a lot about puting Ads into the apps (via Google AdMob) too, Google Play app publishment and a lot of things more. It was also very good to help me develop my Flutter skills a little more, as there are a variety of screens used in this app and two "game modes": quiz and pratical exercices. <a href="https://play.google.com/store/apps/details?id=com.ruanemanuell.progedu">It was available in Google Play, but I decided to deactivate it in early 2024 as I don't have intentions of keep updating it</a>.
 
 ### How to Run
 
